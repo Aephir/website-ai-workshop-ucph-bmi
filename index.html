@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Workshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="home">
+    <div class="page-wrap">
+      <header class="site-header">
+        <div class="header-inner">
+          <a class="brand" href="index.html">AI <span>Workshop</span></a>
+          <nav class="site-nav" aria-label="Primary">
+            <a class="nav-link" data-nav="home" href="index.html">Home</a>
+            <a class="nav-link" data-nav="prompts" href="prompts.html">Prompts</a>
+            <a class="nav-link" data-nav="skills" href="skills.html">Skills</a>
+            <a class="nav-link" data-nav="connectors" href="connectors.html">Connectors</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero reveal">
+          <div class="kicker">In-person workshop toolkit</div>
+          <h1>AI Workshop</h1>
+          <p>
+            A practical launchpad for prompts, reusable skills, and connector guides you can run live during the session.
+          </p>
+        </section>
+
+        <p class="section-intro reveal">Choose a module to explore and demo:</p>
+
+        <section class="card-grid reveal" aria-label="Workshop sections">
+          <a class="card tile-link" href="prompts.html">
+            <div class="tile-icon">P</div>
+            <h3>Prompts</h3>
+            <p>Sectioned prompt library with quick navigation and one-click copy for live exercises.</p>
+          </a>
+
+          <a class="card tile-link" href="skills.html">
+            <div class="tile-icon">S</div>
+            <h3>Skills</h3>
+            <p>Downloadable skill files plus an in-browser viewer for reading and copying content.</p>
+          </a>
+
+          <a class="card tile-link" href="connectors.html">
+            <div class="tile-icon">C</div>
+            <h3>Connectors</h3>
+            <p>Step-by-step setup guides for local tools and knowledge sources used in the workshop.</p>
+          </a>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <span>&copy; <span data-year></span> AI Workshop demo site.</span>
+          <span> </span>
+          <a href="prompt.html">Built with a single AI prompt -&gt;</a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+Build a small static website for an in-person AI workshop I'm running. It has no backend, no build step, and no dependencies beyond plain HTML/CSS/JS (you may use a Google Font via CDN link if you want, nothing else external). It needs to be visually polished and modern — this site is itself part of the demonstration of what AI tooling can produce, so it should not look like a template or a 1990s page. Work through the whole thing end to end without stopping for approval on each file; ask me only if something below is genuinely ambiguous.
+
+## File structure
+
+Create these files at the project root, all self-contained (no build tooling):
+
+- `index.html` — home page
+- `prompts.html` — the Prompts page
+- `skills.html` — the Skills page
+- `connectors.html` — the Connectors page
+- `view.html` — a generic content-viewer page, reused by both Skills and Connectors (see below)
+- `prompt.html` — meta page showing the exact prompt used to build the site
+- `styles.css` — shared stylesheet for all pages
+- `script.js` — shared JS for all pages (feature-detect what each page needs; don't error on pages missing certain elements)
+- `data.js` — a plain JS file holding the content data (see "Data-driven content" below), loaded before `script.js` on the pages that need it
+
+## Design system
+
+- Dark theme. Background near-black with subtle variation (not flat #000 — use a very dark slate/navy, e.g. something like `#0a0e14` to `#12161f` range), card surfaces a step lighter with soft borders.
+- Single accent color: electric blue/cyan (pick a vivid, high-contrast hex in the cyan-blue range, e.g. around `#38bdf8` / `#22d3ee` territory — use your judgment for exact value). Use it for links, active states, buttons, glow/highlight accents. Don't introduce a second accent color.
+- Typography: a clean modern sans-serif for headings/body (e.g. via Google Fonts — Inter, Space Grotesk, or similar), and a monospace font (e.g. JetBrains Mono, Fira Code) for anything showing prompt text, config, or guide content.
+- Subtle depth: soft shadows, faint gradients, maybe a very subtle animated or static gradient glow in the hero background. Keep it tasteful — small, purposeful motion (hover states, fade-ins on scroll), not flashy or distracting.
+- Fully responsive down to mobile widths. Test your layout mentally at ~375px, ~768px, and ~1440px.
+- Consistent sticky header on every page: site name/logo on the left, nav links (Home, Prompts, Skills, Connectors) on the right, current page indicated visually. Header stays visible on scroll.
+- Consistent footer on every page with a small line of text and a link to `prompt.html` reading something like "Built with a single AI prompt →".
+
+## Page: `index.html` (Home)
+
+- Hero section: workshop title (use a placeholder title like "AI Workshop" — I'll edit the real name in later), a one-line subtitle/tagline, some visual presence (gradient, subtle animation, or illustrative element — your call, keep it tasteful).
+- Below the hero, three large tile/card links, sized and styled prominently (big rectangles or squares with icon, title, short description):
+
+1. **Prompts** → links to `prompts.html`
+2. **Skills** → links to `skills.html`
+3. **Connectors** → links to `connectors.html`
+- Use a CSS grid for the tiles that comfortably fits 3 tiles now but doesn't look broken or awkward if a 4th/5th tile is added later (e.g. `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))` or similar responsive approach).
+- Tiles should have a hover effect (lift, glow, or border highlight using the accent color).
+
+## Data-driven content
+
+Everything content-related lives in `data.js`, not hardcoded in HTML, so I can extend any of these lists later by editing only this one file.
+
+js
+
+```
+const PROMPT_SECTIONS = [
+  {
+    id: "section-1",
+    title: "Section 1: Getting Started",
+    description: "Short one-line description of this section.",
+    prompts: [
+      { title: "Example prompt 1", text: "This is placeholder prompt text for the first example." },
+      { title: "Example prompt 2", text: "Another placeholder prompt example." }
+    ]
+  }
+  // ...2 more placeholder sections, same shape, 2-3 placeholder prompts each
+];
+
+const SKILLS = [
+  {
+    id: "placeholder-skill-1",
+    name: "Placeholder Skill 1",
+    description: "One-line description of what this skill does.",
+    filename: "placeholder-skill-1.skill",
+    content: "Full placeholder skill text/markdown goes here — this is what renders in the viewer page and what the download file contains."
+  }
+  // ...1-2 more placeholder skills, same shape
+];
+
+const CONNECTORS = [
+  {
+    id: "claude-desktop-config",
+    name: "Editing claude_desktop_config.json",
+    description: "How to find and edit your Claude Desktop config file to add MCP connectors.",
+    content: "Placeholder step-by-step guide text goes here, including an example JSON config block."
+  },
+  {
+    id: "obsidian-vault",
+    name: "Connecting an Obsidian Vault",
+    description: "How to set up an MCP connector for an Obsidian vault.",
+    content: "Placeholder step-by-step guide text goes here."
+  },
+  {
+    id: "zotero",
+    name: "Connecting Zotero",
+    description: "How to set up an MCP connector for a Zotero library.",
+    content: "Placeholder step-by-step guide text goes here."
+  }
+  // structure supports adding more connector guides later
+];
+```
+
+## Page: `prompts.html`
+
+Sections are **not fixed in the HTML** — render everything from `PROMPT_SECTIONS`.
+
+- A **sticky quick-nav bar** (horizontal pill/tab bar, positioned below the main header, sticky on scroll) auto-generated from `PROMPT_SECTIONS` — one pill per section, showing its title. Clicking a pill smooth-scrolls to that section's anchor.
+- The pill for whichever section is currently in view should be visually highlighted as **active** — implement with an `IntersectionObserver` watching each section, not scroll-position math.
+- Below the nav bar, render each section as a block: heading, description, then each prompt as a card containing the prompt title and the prompt text in a monospace `<pre>`/`<code>` block, plus a **"Copy" button** on each card that copies that prompt's text to the clipboard and gives brief visual feedback (button text → "Copied!" for ~1.5s, then reverts).
+- All nav pills, section blocks, and prompt cards must be generated by JS from `PROMPT_SECTIONS` at page load. Adding a 4th object to the array should be the only change needed to add a 4th section.
+
+## Page: `skills.html`
+
+Render `SKILLS` as a responsive card grid (similar tile treatment to the home page tiles, smaller). Each card shows the skill name and description, and has **two actions**:
+
+1. **Download** — a styled button/link to `skills/<filename>` with the `download` attribute. Create a `skills/` folder with a placeholder file matching each `filename` so the link doesn't 404.
+2. **View** — a styled button/link to `view.html?type=skill&id=<id>`, opening the shared viewer page (below) so people can read and copy the skill content without downloading anything.
+
+## Page: `connectors.html`
+
+Render `CONNECTORS` as a responsive card grid, same visual treatment as the skills grid. Each card shows the connector name and description, with a single action button **"View guide"** linking to `view.html?type=connector&id=<id>`.
+
+## Page: `view.html` (shared content viewer)
+
+A generic page that displays one item's content full-page, in the same visual theme as the rest of the site (header/footer included). On load, read `type` and `id` from the URL query string (`?type=skill&id=...` or `?type=connector&id=...`), look up the matching entry in `SKILLS` or `CONNECTORS` in `data.js`, and render:
+
+- The item's `name` as the page heading, and its `description` as a subtitle.
+- The item's `content` inside a large, clearly-bounded box styled like a code/text snippet panel (monospace font, dark surface slightly lighter than the page background, rounded corners, scrollable if long) — visually similar to how Claude's chat UI presents a text/code artifact.
+- A **"Copy all"** button positioned at the top of that box (e.g. top-right corner, like a code block's copy button) that copies the entire `content` string to the clipboard, with the same "Copied!" feedback pattern used on `prompts.html`.
+- If `type=skill`, also show a "Download" button near the top of the page linking back to the file in `skills/`.
+- Handle the case where the query string doesn't match any item gracefully (friendly "not found" message with a link back to the relevant list page), rather than a blank page or JS error.
+
+## Page: `prompt.html`
+
+A simple page, same header/footer as the rest, with a heading like "How this site was built" and one short sentence of framing text ("This entire site was generated from the single prompt below, using Claude in VSCode."). Below that, render the **exact, verbatim text of this entire prompt** (everything from "Build a small static website..." at the top down to the end of this document, not including the instructions preamble above the `---` divider) inside a styled `<pre>` block using the monospace font, with a copy-to-clipboard button above it, using the same visual box treatment as `view.html`. Save this literal prompt text into a separate file `prompt-source.txt` and load/display it from there (don't hand-retype it — copy it verbatim into that file).
+
+## Final check
+
+When done, briefly open/verify each HTML page, confirm there are no console errors, confirm the nav/copy buttons/active-highlighting/view-page lookups all work (including at least one skill and one connector view link), and confirm the layout doesn't break at mobile width. List the files you created at the end.
+
+Think before answering (maximum reasoning).
