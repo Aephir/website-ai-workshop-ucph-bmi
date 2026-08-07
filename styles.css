@@ -75,14 +75,14 @@ svg {
 
 .brand {
   text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.015em;
-  font-size: 1.05rem;
-  color: var(--text-0);
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
 }
 
-.brand span {
-  color: var(--accent);
+.brand-logo {
+  height: 34px;
+  width: auto;
 }
 
 .site-nav {
@@ -499,8 +499,11 @@ pre {
   }
 
   .brand {
-    font-size: 0.95rem;
     flex: 0 0 auto;
+  }
+
+  .brand-logo {
+    height: 28px;
   }
 
   .site-nav {

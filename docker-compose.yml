@@ -1,7 +1,7 @@
 services:
   workshop-site:
     build: .
-    container_name: workshop-website
+    container_name: ${CONTAINER_NAME:-workshop-website}
     restart: unless-stopped
     ports:
       - "${HOST_IP:-10.0.30.51}:${HOST_PORT:-8911}:80"
