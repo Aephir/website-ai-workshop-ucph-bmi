@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  var contentCache = new Map();
+
   function byId(id) {
     return document.getElementById(id);
   }
@@ -46,6 +48,31 @@
     } catch (error) {
       setCopyButtonState(button, "Copy failed", 1600);
     }
+  }
+
+  async function loadTextContent(path) {
+    if (!path) {
+      return "";
+    }
+    if (contentCache.has(path)) {
+      return contentCache.get(path);
+    }
+
+    var response = await fetch(path);
+    if (!response.ok) {
+      throw new Error("Unable to load content: " + path);
+    }
+
+    var text = await response.text();
+    contentCache.set(path, text);
+    return text;
+  }
+
+  function renderMarkdown(markdownText) {
+    if (window.marked && typeof window.marked.parse === "function") {
+      return window.marked.parse(markdownText || "");
+    }
+    return "";
   }
 
   function addRevealAnimations() {
@@ -118,6 +145,8 @@
         var promptCard = document.createElement("article");
         promptCard.className = "prompt-card";
 
+        var promptText = prompt.text || "";
+
         var head = document.createElement("div");
         head.className = "prompt-card-head";
 
@@ -127,10 +156,13 @@
         var copyButton = document.createElement("button");
         copyButton.type = "button";
         copyButton.className = "copy-btn";
-        copyButton.textContent = "Copy";
+        copyButton.textContent = prompt.contentPath ? "Loading" : "Copy";
         copyButton.dataset.defaultLabel = "Copy";
+        copyButton.disabled = prompt.contentPath ? true : !promptText;
         copyButton.addEventListener("click", function () {
-          copyText(prompt.text || "", copyButton);
+          if (promptText) {
+            copyText(promptText, copyButton);
+          }
         });
 
         head.appendChild(promptTitle);
@@ -140,9 +172,50 @@
         panel.className = "code-panel";
 
         var pre = document.createElement("pre");
-        pre.textContent = prompt.text || "";
+        var markdown = document.createElement("article");
+        markdown.className = "markdown-body";
 
-        panel.appendChild(pre);
+        function renderPromptContent(text) {
+          var rendered = renderMarkdown(text);
+          if (rendered) {
+            markdown.innerHTML = rendered;
+            if (pre.parentNode === panel) {
+              panel.removeChild(pre);
+            }
+            if (markdown.parentNode !== panel) {
+              panel.appendChild(markdown);
+            }
+          } else {
+            pre.textContent = text;
+            if (markdown.parentNode === panel) {
+              panel.removeChild(markdown);
+            }
+            if (pre.parentNode !== panel) {
+              panel.appendChild(pre);
+            }
+          }
+        }
+
+        if (prompt.contentPath) {
+          pre.textContent = "Loading prompt...";
+          panel.appendChild(pre);
+
+          loadTextContent(prompt.contentPath)
+            .then(function (text) {
+              promptText = text;
+              renderPromptContent(text);
+              copyButton.textContent = "Copy";
+              copyButton.disabled = false;
+            })
+            .catch(function () {
+              renderPromptContent(promptText || "Prompt content could not be loaded.");
+              copyButton.textContent = promptText ? "Copy" : "Unavailable";
+              copyButton.disabled = !promptText;
+            });
+        } else {
+          renderPromptContent(promptText);
+        }
+
         promptCard.appendChild(head);
         promptCard.appendChild(panel);
         list.appendChild(promptCard);
@@ -374,17 +447,62 @@
     copyButton.className = "copy-btn viewer-copy";
     copyButton.textContent = "Copy all";
     copyButton.dataset.defaultLabel = "Copy all";
-    copyButton.addEventListener("click", function () {
-      copyText(item.content || "", copyButton);
-    });
 
     var scrollWrap = document.createElement("div");
     scrollWrap.className = "code-scroll";
 
     var pre = document.createElement("pre");
-    pre.textContent = item.content || "";
+    var markdown = document.createElement("article");
+    markdown.className = "markdown-body";
 
-    scrollWrap.appendChild(pre);
+    function renderViewerContent(text) {
+      var rendered = renderMarkdown(text);
+      if (rendered) {
+        markdown.innerHTML = rendered;
+        if (pre.parentNode === scrollWrap) {
+          scrollWrap.removeChild(pre);
+        }
+        if (markdown.parentNode !== scrollWrap) {
+          scrollWrap.appendChild(markdown);
+        }
+      } else {
+        pre.textContent = text;
+        if (markdown.parentNode === scrollWrap) {
+          scrollWrap.removeChild(markdown);
+        }
+        if (pre.parentNode !== scrollWrap) {
+          scrollWrap.appendChild(pre);
+        }
+      }
+    }
+
+    var contentText = item.content || "";
+    if (item.contentPath) {
+      pre.textContent = "Loading content...";
+      scrollWrap.appendChild(pre);
+      copyButton.textContent = "Loading";
+      copyButton.disabled = true;
+
+      loadTextContent(item.contentPath)
+        .then(function (text) {
+          contentText = text;
+          renderViewerContent(text);
+          copyButton.textContent = "Copy all";
+          copyButton.disabled = false;
+        })
+        .catch(function () {
+          renderViewerContent(contentText || "Content could not be loaded.");
+          copyButton.textContent = contentText ? "Copy all" : "Unavailable";
+          copyButton.disabled = !contentText;
+        });
+    } else {
+      renderViewerContent(contentText);
+    }
+
+    copyButton.addEventListener("click", function () {
+      copyText(contentText, copyButton);
+    });
+
     panel.appendChild(copyButton);
     panel.appendChild(scrollWrap);
 
