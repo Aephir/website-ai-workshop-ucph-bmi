@@ -3,22 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Connectors | AI Workshop</title>
+    <title>Setup | AI Workshop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body data-page="connectors">
+  <body data-page="setup">
     <div class="page-wrap">
       <header class="site-header">
         <div class="header-inner">
-          <a class="brand" href="index.html" aria-label="Walden Consulting home">
-            <img class="brand-logo" src="img/waldenconsulting_color_1.webp" alt="Walden Consulting" />
-          </a>
+          <a class="brand" href="index.html" aria-label="Walden Consulting home"><img class="brand-logo" src="img/waldenconsulting_color_1.webp" alt="Walden Consulting" /></a>
           <nav class="site-nav" aria-label="Primary">
             <a class="nav-link" data-nav="home" href="index.html">Home</a>
             <a class="nav-link" data-nav="setup" href="setup.html">Setup</a>
@@ -29,26 +24,17 @@
           </nav>
         </div>
       </header>
-
       <main>
-        <h1 class="page-title reveal">Connectors</h1>
-        <p class="page-subtitle reveal">
-          Open concise setup guides for connecting local tools and external knowledge sources during the workshop.
-        </p>
-
-        <section id="connectors-grid" class="card-grid" aria-label="Connector guides"></section>
+        <h1 class="page-title reveal">Setup</h1>
+        <p class="page-subtitle reveal">Set up your tool, then run the baseline exercise and compare what changed.</p>
+        <section class="code-panel viewer-panel reveal" aria-label="Setup exercise">
+          <div id="setup-content" class="markdown-body">Loading setup guide...</div>
+        </section>
       </main>
-
-      <footer class="site-footer">
-        <div class="footer-inner">
-          <span>&copy; <span data-year></span> AI Workshop demo site.</span>
-          <span> </span>
-          <a href="prompt.html">Built with a single AI prompt -&gt;</a>
-        </div>
-      </footer>
+      <footer class="site-footer"><div class="footer-inner"><span>&copy; <span data-year></span> AI Workshop demo site.</span><span> </span><a href="prompt.html">Built with a single AI prompt -&gt;</a></div></footer>
     </div>
-
     <script src="data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

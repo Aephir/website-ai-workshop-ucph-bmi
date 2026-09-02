@@ -1,87 +1,43 @@
 const PROMPT_SECTIONS = [
   {
-    id: "section-1",
-    title: "Section 1: Getting Started",
-    description: "Short one-line description of this section.",
+    id: "memory-vault",
+    title: "Module 1: Set it up",
+    description: "A four-file memory-vault prompt set for keeping project context durable across conversations. Read the usage note first, then choose one base prompt and add-ons.",
     prompts: [
-      {
-        title: "Example prompt 1",
-        text: "This is placeholder prompt text for the first example.",
-        contentPath: "prompts/section-1-example-prompt-1.md"
-      },
-      {
-        title: "Example prompt 2",
-        text: "Another placeholder prompt example.",
-        contentPath: "prompts/section-1-example-prompt-2.md"
-      }
+      { title: "Memory vault: single project", contentPath: "prompts/01-memory-vault-single-project.md" },
+      { title: "Memory vault: universal", contentPath: "prompts/02-memory-vault-universal.md" },
+      { title: "Add-on: skill packager", contentPath: "prompts/03-addon-skill-packager.md" },
+      { title: "Add-on: setup assistant", contentPath: "prompts/04-addon-setup-assistant.md" }
     ]
   },
   {
-    id: "section-2",
-    title: "Section 2: Prompt Patterns",
-    description: "Reusable patterns for clearer and more controllable prompts.",
+    id: "prompting-techniques",
+    title: "Prompting techniques",
+    description: "Concrete patterns from the workshop for making AI outputs more specific, testable, and useful.",
     prompts: [
-      {
-        title: "Role and goal framing",
-        text: "Act as a research assistant. Summarize the attached paper in 5 bullet points for a mixed technical audience.",
-        contentPath: "prompts/section-2-role-and-goal-framing.md"
-      },
-      {
-        title: "Constraint-first prompting",
-        text: "Propose 3 workshop exercises. Constraints: no internet required, each under 10 minutes, and suitable for groups of 4-5.",
-        contentPath: "prompts/section-2-constraint-first-prompting.md"
-      },
-      {
-        title: "Iteration prompt",
-        text: "Improve your previous answer for clarity. Keep the same structure, reduce jargon, and add one concrete example per section.",
-        contentPath: "prompts/section-2-iteration-prompt.md"
-      }
+      { title: "Worst-ideas-first", contentPath: "prompts/06-worst-ideas-first.md" },
+      { title: "Constraint injection", contentPath: "prompts/08-constraint-injection.md" },
+      { title: "Idea stress test", contentPath: "prompts/09-idea-stress-test.md" },
+      { title: "CRAFT", contentPath: "prompts/10-craft.md" }
     ]
   },
   {
-    id: "section-3",
-    title: "Section 3: Evaluation and Refinement",
-    description: "Methods for testing quality and refining outputs quickly.",
+    id: "exercises-and-workflows",
+    title: "Exercises and workflows",
+    description: "Exercises for testing a live connection and turning corrections into durable instructions.",
     prompts: [
-      {
-        title: "Quality checklist",
-        text: "Evaluate this draft against: accuracy, clarity, and actionability. Return a score from 1-5 for each and suggest one improvement.",
-        contentPath: "prompts/section-3-quality-checklist.md"
-      },
-      {
-        title: "Compare alternatives",
-        text: "Generate two alternative agendas for the same workshop objective. One should be discussion-heavy and one should be demo-heavy.",
-        contentPath: "prompts/section-3-compare-alternatives.md"
-      }
+      { title: "Ask a real question about your own paper", contentPath: "prompts/07-connector-test-query.md" },
+      { title: "Self-update standing instruction", contentPath: "prompts/11-self-update-standing-instruction.md" }
     ]
   }
 ];
 
 const SKILLS = [
-  {
-    id: "placeholder-skill-1",
-    name: "Placeholder Skill 1",
-    description: "One-line description of what this skill does.",
-    filename: "placeholder-skill-1.md",
-    content: `# Placeholder Skill 1\n\nFull placeholder skill text/markdown goes here - this is what renders in the viewer page and what the download file contains.\n\n## Example\n- Input: a short task description\n- Output: a structured response with key steps`,
-    contentPath: "skills/placeholder-skill-1.md"
-  },
-  {
-    id: "placeholder-skill-2",
-    name: "Placeholder Skill 2",
-    description: "A second placeholder skill focused on repeatable workflows.",
-    filename: "placeholder-skill-2.md",
-    content: `# Placeholder Skill 2\n\nThis is example content for a second skill file.\n\n## Workflow\n1. Gather context\n2. Generate options\n3. Validate outcome`,
-    contentPath: "skills/placeholder-skill-2.md"
-  },
-  {
-    id: "placeholder-skill-3",
-    name: "Placeholder Skill 3",
-    description: "A third placeholder skill for quality checks and review.",
-    filename: "placeholder-skill-3.md",
-    content: `# Placeholder Skill 3\n\nUse this for final checks before delivery.\n\n- Confirm formatting\n- Verify references\n- Summarize key decisions`,
-    contentPath: "skills/placeholder-skill-3.md"
-  }
+  { id: "adversarial-debate-review", name: "adversarial-debate-review", description: "Run a structured three-agent adversarial debate to stress-test a specific factual claim or strategic decision.", filename: "adversarial-debate-review.skill", contentPath: "skills/adversarial-debate-review.md" },
+  { id: "citation-check", name: "citation-check", description: "Verify that citations and references exist, have correct metadata, support their claims, and have not been retracted.", filename: "citation-check.skill", contentPath: "skills/citation-check.md" },
+  { id: "consolidate-instructions", name: "consolidate-instructions", description: "Review corrections and preferences logged in a memory queue and propose exact wording for standing instructions or skills.", filename: "consolidate-instructions.skill", contentPath: "skills/consolidate-instructions.md" },
+  { id: "prompt-upgrade", name: "prompt-upgrade", description: "Turn a rough prompt, half-formed idea, or task description into a finished, ready-to-send prompt for any AI chat tool.", filename: "prompt-upgrade.skill", contentPath: "skills/prompt-upgrade.md" },
+  { id: "zotero-word-citations", name: "zotero-word-citations", description: "Build live Zotero-linked citations and reference lists in Word documents, with a connectivity check and explicit fallback rules.", filename: "zotero-word-citations.skill", contentPath: "skills/zotero-word-citations.md" }
 ];
 
 const CONNECTORS = [
@@ -108,9 +64,34 @@ const CONNECTORS = [
     filename: "zotero.md",
     contentPath: "connectors/zotero.md",
     content: `# Connecting Zotero\n\nPlaceholder step-by-step guide text goes here.\n\n1. Export or access local metadata\n2. Configure connector credentials\n3. Test retrieval against known references`
+  },
+  {
+    id: "pubmed",
+    name: "Connecting PubMed",
+    description: "How to connect PubMed to Claude, and what to do on platforms without a dedicated connector.",
+    filename: "pubmed.md",
+    contentPath: "connectors/pubmed.md",
+    content: ""
+  },
+  {
+    id: "memory-vault",
+    name: "Memory vault",
+    description: "A single-project memory system for keeping durable context in a small set of files.",
+    filename: "memory-vault.md",
+    contentPath: "connectors/memory-vault.md",
+    content: ""
   }
 ];
+
+const HOMEWORK = {
+  skillId: "adversarial-debate-review",
+  framing: "adversarial-debate-review: an outline, not yet validated. Three AI agents argue a claim — for, against, and a judge. The design is real; it hasn't earned full trust yet. Finish building and validating it yourself if you want to learn how."
+};
+
+const SETUP_CONTENT_PATH = "prompts/05-setup-exercise.md";
 
 window.PROMPT_SECTIONS = PROMPT_SECTIONS;
 window.SKILLS = SKILLS;
 window.CONNECTORS = CONNECTORS;
+window.HOMEWORK = HOMEWORK;
+window.SETUP_CONTENT_PATH = SETUP_CONTENT_PATH;

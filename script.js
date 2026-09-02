@@ -13,6 +13,10 @@
 
   function setActiveHeaderLink() {
     var page = document.body ? document.body.dataset.page : "";
+    if (!page && window.location.pathname.endsWith("/view.html")) {
+      var viewerType = new URLSearchParams(window.location.search).get("type");
+      page = viewerType === "skill" ? "skills" : viewerType === "connector" ? "connectors" : "";
+    }
     var links = document.querySelectorAll(".nav-link[data-nav]");
     links.forEach(function (link) {
       link.classList.toggle("is-active", link.dataset.nav === page);
@@ -339,6 +343,60 @@
     });
   }
 
+  function initSetupPage() {
+    var target = byId("setup-content");
+    if (!target || !window.SETUP_CONTENT_PATH) {
+      return;
+    }
+
+    loadTextContent(window.SETUP_CONTENT_PATH)
+      .then(function (text) {
+        target.innerHTML = renderMarkdown(text);
+      })
+      .catch(function () {
+        target.textContent = "The setup guide could not be loaded.";
+      });
+  }
+
+  function initHomeworkPage() {
+    var container = byId("homework-card");
+    var homework = window.HOMEWORK;
+    var skill = isArray(window.SKILLS) && homework
+      ? window.SKILLS.find(function (entry) { return entry.id === homework.skillId; })
+      : null;
+
+    if (!container || !skill || !homework) {
+      return;
+    }
+
+    var card = document.createElement("article");
+    card.className = "card reveal";
+    var body = document.createElement("div");
+    body.className = "card-body";
+    var name = document.createElement("h2");
+    name.textContent = skill.name;
+    var description = document.createElement("p");
+    description.textContent = homework.framing;
+    var actions = document.createElement("div");
+    actions.className = "card-actions";
+    var view = document.createElement("a");
+    view.className = "btn-inline";
+    view.href = "view.html?type=skill&id=" + encodeURIComponent(skill.id);
+    view.textContent = "View";
+    var download = document.createElement("a");
+    download.className = "btn-inline";
+    download.href = "skills/" + skill.filename;
+    download.setAttribute("download", skill.filename);
+    download.textContent = "Download";
+    actions.appendChild(view);
+    actions.appendChild(download);
+    body.appendChild(name);
+    body.appendChild(description);
+    body.appendChild(actions);
+    card.appendChild(body);
+    container.appendChild(card);
+  }
+
   function renderNotFound(target, backHref, backLabel) {
     target.innerHTML = "";
 
@@ -543,6 +601,8 @@
     initPromptsPage();
     initSkillsPage();
     initConnectorsPage();
+    initSetupPage();
+    initHomeworkPage();
     initViewerPage();
     initPromptMetaPage();
 
