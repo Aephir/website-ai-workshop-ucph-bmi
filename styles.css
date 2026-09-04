@@ -336,8 +336,11 @@ h3 {
 }
 
 .prompt-card .code-panel {
-  max-height: calc(1.55em * 3 + 32px);
+  height: calc(1.55em * 3 + 32px);
+  min-height: 96px;
+  max-height: none;
   overflow: auto;
+  resize: vertical;
 }
 
 .prompt-card .markdown-body {
@@ -362,8 +365,10 @@ h3 {
 }
 
 .code-scroll {
+  min-height: 180px;
   max-height: 68vh;
   overflow: auto;
+  resize: vertical;
 }
 
 pre {
@@ -442,6 +447,9 @@ pre {
 .viewer-panel {
   position: relative;
   border-radius: var(--radius-md);
+  max-height: 78vh;
+  overflow: auto;
+  resize: vertical;
 }
 
 .viewer-copy {

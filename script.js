@@ -73,8 +73,12 @@
   }
 
   function renderMarkdown(markdownText) {
+    var source = markdownText || "";
+    if (source.startsWith("---")) {
+      source = source.replace(/^---\s*\n[\s\S]*?\n---\s*\n/, "");
+    }
     if (window.marked && typeof window.marked.parse === "function") {
-      return window.marked.parse(markdownText || "");
+      return window.marked.parse(source);
     }
     return "";
   }
