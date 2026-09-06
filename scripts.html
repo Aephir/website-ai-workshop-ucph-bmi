@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scripts | AI Workshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="scripts">
+    <div class="page-wrap">
+      <header class="site-header">
+        <div class="header-inner">
+          <a class="brand" href="index.html" aria-label="Walden Consulting home">
+            <img class="brand-logo" src="img/waldenconsulting_color_1.webp" alt="Walden Consulting" />
+          </a>
+          <nav class="site-nav" aria-label="Primary">
+            <a class="nav-link" data-nav="home" href="index.html">Home</a>
+            <a class="nav-link" data-nav="prompts" href="prompts.html">Prompts</a>
+            <a class="nav-link" data-nav="skills" href="skills.html">Skills</a>
+            <a class="nav-link" data-nav="connectors" href="connectors.html">Connectors</a>
+            <a class="nav-link" data-nav="scripts" href="scripts.html">Scripts</a>
+            <a class="nav-link" data-nav="homework" href="homework.html">Homework</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <h1 class="page-title reveal">Scripts</h1>
+        <p class="page-subtitle reveal">
+          Your operating system is selected automatically; use the tabs to switch if needed.
+        </p>
+
+        <div class="platform-tabs reveal" role="tablist" aria-label="Operating system">
+          <button class="platform-tab" type="button" role="tab" aria-selected="false" data-download-platform="macos">macOS</button>
+          <button class="platform-tab" type="button" role="tab" aria-selected="false" data-download-platform="windows">Windows</button>
+        </div>
+
+        <section class="download-panel" data-download-panel="macos" aria-label="macOS scripts">
+          <p class="platform-instructions reveal">Download a <code>.command</code> file, then double-click it in Finder and follow the on-screen instructions.</p>
+          <div class="card-grid" aria-label="macOS scripts">
+            <article class="card reveal">
+              <div class="card-body">
+                <h2>Obsidian Vault connector</h2>
+                <p>Guided installer for connecting a markdown vault to Claude Desktop.</p>
+                <div class="card-actions">
+                  <a class="btn-inline" href="scripts/install-mcpvault.command" download="install-mcpvault.command">Download .command</a>
+                </div>
+              </div>
+            </article>
+            <article class="card reveal">
+              <div class="card-body">
+                <h2>Zotero connector</h2>
+                <p>Guided installer for connecting a Zotero library to Claude Desktop.</p>
+                <div class="card-actions">
+                  <a class="btn-inline" href="scripts/install-zotero-mcp.command" download="install-zotero-mcp.command">Download .command</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="download-panel" data-download-panel="windows" aria-label="Windows scripts" hidden>
+          <p class="platform-instructions reveal">Download both files for a script into the same folder, then double-click its <code>.bat</code> file. Do not double-click the <code>.ps1</code> file.</p>
+          <div class="card-grid" aria-label="Windows scripts">
+            <article class="card reveal">
+              <div class="card-body">
+                <h2>Obsidian Vault connector</h2>
+                <p>Guided installer for connecting a markdown vault to Claude Desktop.</p>
+                <div class="card-actions">
+                  <a class="btn-inline" href="scripts/install-mcpvault.bat" download="install-mcpvault.bat">Download .bat</a>
+                  <a class="btn-inline" href="scripts/install-mcpvault.ps1" download="install-mcpvault.ps1">Download .ps1</a>
+                </div>
+              </div>
+            </article>
+            <article class="card reveal">
+              <div class="card-body">
+                <h2>Zotero connector</h2>
+                <p>Guided installer for connecting a Zotero library to Claude Desktop.</p>
+                <div class="card-actions">
+                  <a class="btn-inline" href="scripts/install-zotero-mcp.bat" download="install-zotero-mcp.bat">Download .bat</a>
+                  <a class="btn-inline" href="scripts/install-zotero-mcp.ps1" download="install-zotero-mcp.ps1">Download .ps1</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <span>&copy; <span data-year></span> AI Workshop demo site.</span>
+          <span> </span>
+          <a href="prompt.html">Built with a single AI prompt -&gt;</a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

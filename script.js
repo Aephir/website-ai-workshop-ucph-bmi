@@ -294,13 +294,14 @@
       download.setAttribute("download", skill.filename);
       download.textContent = "Download";
 
-      var view = document.createElement("a");
-      view.className = "btn-inline";
-      view.href = "view.html?type=skill&id=" + encodeURIComponent(skill.id);
-      view.textContent = "View";
-
       actions.appendChild(download);
-      actions.appendChild(view);
+      if (skill.contentPath || skill.content) {
+        var view = document.createElement("a");
+        view.className = "btn-inline";
+        view.href = "view.html?type=skill&id=" + encodeURIComponent(skill.id);
+        view.textContent = "View";
+        actions.appendChild(view);
+      }
       body.appendChild(name);
       body.appendChild(description);
       body.appendChild(actions);
@@ -360,6 +361,40 @@
       .catch(function () {
         target.textContent = "The setup guide could not be loaded.";
       });
+  }
+
+  function initScriptsPage() {
+    var tabs = document.querySelectorAll("[data-download-platform]");
+    var panels = document.querySelectorAll("[data-download-panel]");
+
+    if (!tabs.length || !panels.length) {
+      return;
+    }
+
+    function selectPlatform(platform) {
+      tabs.forEach(function (tab) {
+        var isSelected = tab.dataset.downloadPlatform === platform;
+        tab.classList.toggle("is-active", isSelected);
+        tab.setAttribute("aria-selected", String(isSelected));
+      });
+
+      panels.forEach(function (panel) {
+        panel.hidden = panel.dataset.downloadPanel !== platform;
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        selectPlatform(tab.dataset.downloadPlatform);
+      });
+    });
+
+    var userAgent = navigator.userAgent || "";
+    var platform = navigator.userAgentData && navigator.userAgentData.platform
+      ? navigator.userAgentData.platform
+      : navigator.platform || "";
+    var defaultPlatform = /win/i.test(platform) || /windows/i.test(userAgent) ? "windows" : "macos";
+    selectPlatform(defaultPlatform);
   }
 
   function initHomeworkPage() {
@@ -606,6 +641,7 @@
     initSkillsPage();
     initConnectorsPage();
     initSetupPage();
+    initScriptsPage();
     initHomeworkPage();
     initViewerPage();
     initPromptMetaPage();

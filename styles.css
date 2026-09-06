@@ -430,6 +430,52 @@ pre {
   margin-top: 6px;
 }
 
+.platform-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 28px 0 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.platform-tab {
+  appearance: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--text-1);
+  padding: 10px 14px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.platform-tab:hover,
+.platform-tab.is-active {
+  color: var(--text-0);
+  border-bottom-color: var(--accent);
+}
+
+.download-panel {
+  padding: 26px;
+}
+
+.download-panel h2 {
+  margin-bottom: 8px;
+}
+
+.download-panel p,
+.download-steps {
+  color: var(--text-1);
+}
+
+.download-steps {
+  margin: 18px 0 24px;
+  padding-left: 22px;
+}
+
+.download-steps li + li {
+  margin-top: 8px;
+}
+
 .viewer-header {
   display: flex;
   justify-content: space-between;
