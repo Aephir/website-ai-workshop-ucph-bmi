@@ -357,10 +357,27 @@
     loadTextContent(window.SETUP_CONTENT_PATH)
       .then(function (text) {
         target.innerHTML = renderMarkdown(text);
+        addMarkdownCopyButtons(target);
       })
       .catch(function () {
         target.textContent = "The setup guide could not be loaded.";
       });
+  }
+
+  function addMarkdownCopyButtons(container) {
+    var codeBlocks = container.querySelectorAll("pre > code");
+    codeBlocks.forEach(function (code) {
+      var pre = code.parentElement;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "copy-btn markdown-copy";
+      button.textContent = "Copy";
+      button.dataset.defaultLabel = "Copy";
+      button.addEventListener("click", function () {
+        copyText(code.textContent, button);
+      });
+      pre.appendChild(button);
+    });
   }
 
   function initScriptsPage() {
@@ -539,12 +556,6 @@
     var panel = document.createElement("section");
     panel.className = "code-panel viewer-panel";
 
-    var copyButton = document.createElement("button");
-    copyButton.type = "button";
-    copyButton.className = "copy-btn viewer-copy";
-    copyButton.textContent = "Copy all";
-    copyButton.dataset.defaultLabel = "Copy all";
-
     var scrollWrap = document.createElement("div");
     scrollWrap.className = "code-scroll";
 
@@ -556,6 +567,7 @@
       var rendered = renderMarkdown(text);
       if (rendered) {
         markdown.innerHTML = rendered;
+        addMarkdownCopyButtons(markdown);
         if (pre.parentNode === scrollWrap) {
           scrollWrap.removeChild(pre);
         }
@@ -577,30 +589,19 @@
     if (item.contentPath) {
       pre.textContent = "Loading content...";
       scrollWrap.appendChild(pre);
-      copyButton.textContent = "Loading";
-      copyButton.disabled = true;
 
       loadTextContent(item.contentPath)
         .then(function (text) {
           contentText = text;
           renderViewerContent(text);
-          copyButton.textContent = "Copy all";
-          copyButton.disabled = false;
         })
         .catch(function () {
           renderViewerContent(contentText || "Content could not be loaded.");
-          copyButton.textContent = contentText ? "Copy all" : "Unavailable";
-          copyButton.disabled = !contentText;
         });
     } else {
       renderViewerContent(contentText);
     }
 
-    copyButton.addEventListener("click", function () {
-      copyText(contentText, copyButton);
-    });
-
-    panel.appendChild(copyButton);
     panel.appendChild(scrollWrap);
 
     target.appendChild(header);

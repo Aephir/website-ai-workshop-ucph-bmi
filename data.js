@@ -36,7 +36,7 @@ const SKILLS = [
   { id: "adversarial-debate-review", name: "adversarial-debate-review", description: "Run a structured three-agent adversarial debate to stress-test a specific factual claim or strategic decision.", filename: "adversarial-debate-review.skill", contentPath: "skills/adversarial-debate-review.md" },
   { id: "citation-check", name: "citation-check", description: "Verify that citations and references exist, have correct metadata, support their claims, and have not been retracted.", filename: "citation-check.skill", contentPath: "skills/citation-check.md" },
   { id: "consolidate-instructions", name: "consolidate-instructions", description: "Review corrections and preferences logged in a memory queue and propose exact wording for standing instructions or skills.", filename: "consolidate-instructions.skill", contentPath: "skills/consolidate-instructions.md" },
-  { id: "memory-vault", name: "memory-vault", description: "Package a durable markdown memory vault so an AI can retain and apply your established project context.", filename: "memory-vault.skill" },
+  { id: "memory-vault", name: "memory-vault", description: "Retrieve and maintain durable project context through a structured external memory vault.", filename: "memory-vault.skill", contentPath: "skills/memory-vault.md" },
   { id: "prompt-upgrade", name: "prompt-upgrade", description: "Turn a rough prompt, half-formed idea, or task description into a finished, ready-to-send prompt for any AI chat tool.", filename: "prompt-upgrade.skill", contentPath: "skills/prompt-upgrade.md" },
   { id: "zotero-word-citations", name: "zotero-word-citations", description: "Build live Zotero-linked citations and reference lists in Word documents, with a connectivity check and explicit fallback rules.", filename: "zotero-word-citations.skill", contentPath: "skills/zotero-word-citations.md" }
 ];
@@ -74,14 +74,6 @@ const CONNECTORS = [
     contentPath: "connectors/pubmed.md",
     content: ""
   },
-  {
-    id: "memory-vault",
-    name: "Memory vault",
-    description: "A single-project memory system for keeping durable context in a small set of files.",
-    filename: "memory-vault.md",
-    contentPath: "connectors/memory-vault.md",
-    content: ""
-  }
 ];
 
 const HOMEWORK = {
@@ -89,7 +81,7 @@ const HOMEWORK = {
   framing: "adversarial-debate-review: an outline, not yet validated. Three AI agents argue a claim — for, against, and a judge. The design is real; it hasn't earned full trust yet. Finish building and validating it yourself if you want to learn how."
 };
 
-const SETUP_CONTENT_PATH = "prompts/05-setup-exercise.md";
+const SETUP_CONTENT_PATH = "connectors/memory-vault.md";
 
 window.PROMPT_SECTIONS = PROMPT_SECTIONS;
 window.SKILLS = SKILLS;
