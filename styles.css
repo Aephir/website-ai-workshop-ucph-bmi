@@ -498,13 +498,6 @@ pre {
   resize: vertical;
 }
 
-.viewer-copy {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
-}
-
 .markdown-body {
   padding: 16px;
   color: var(--text-0);
@@ -545,18 +538,30 @@ pre {
 .markdown-body pre {
   position: relative;
   margin: 0 0 0.95em;
-  padding: 46px 14px 14px;
+  padding: 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-sm);
   background: rgba(8, 12, 20, 0.94);
   overflow: auto;
 }
 
-.markdown-copy {
-  position: absolute;
+.markdown-copy,
+.code-copy {
+  position: sticky;
   top: 10px;
-  right: 10px;
+  display: flex;
+  width: fit-content;
+  margin: 0 0 10px auto;
   z-index: 1;
+}
+
+.code-scroll > pre {
+  min-height: 100%;
+}
+
+.code-scroll > pre > .markdown-copy,
+.code-scroll > pre > .code-copy {
+  top: 10px;
 }
 
 .markdown-body pre code {

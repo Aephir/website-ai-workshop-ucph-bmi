@@ -163,7 +163,7 @@
 
         var copyButton = document.createElement("button");
         copyButton.type = "button";
-        copyButton.className = "copy-btn";
+        copyButton.className = "copy-btn code-copy";
         copyButton.textContent = prompt.contentPath ? "Loading" : "Copy";
         copyButton.dataset.defaultLabel = "Copy";
         copyButton.disabled = prompt.contentPath ? true : !promptText;
@@ -174,10 +174,10 @@
         });
 
         head.appendChild(promptTitle);
-        head.appendChild(copyButton);
 
         var panel = document.createElement("div");
         panel.className = "code-panel";
+        panel.appendChild(copyButton);
 
         var pre = document.createElement("pre");
         var markdown = document.createElement("article");
@@ -376,8 +376,29 @@
       button.addEventListener("click", function () {
         copyText(code.textContent, button);
       });
-      pre.appendChild(button);
+      pre.insertBefore(button, code);
     });
+  }
+
+  function renderVerbatimContent(container, text) {
+    container.innerHTML = "";
+
+    var pre = document.createElement("pre");
+    var code = document.createElement("code");
+    var button = document.createElement("button");
+
+    code.textContent = text;
+    button.type = "button";
+    button.className = "copy-btn markdown-copy";
+    button.textContent = "Copy";
+    button.dataset.defaultLabel = "Copy";
+    button.addEventListener("click", function () {
+      copyText(text, button);
+    });
+
+    pre.appendChild(button);
+    pre.appendChild(code);
+    container.appendChild(pre);
   }
 
   function initScriptsPage() {
@@ -564,6 +585,11 @@
     markdown.className = "markdown-body";
 
     function renderViewerContent(text) {
+      if (type === "skill") {
+        renderVerbatimContent(scrollWrap, text);
+        return;
+      }
+
       var rendered = renderMarkdown(text);
       if (rendered) {
         markdown.innerHTML = rendered;
