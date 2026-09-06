@@ -72,6 +72,28 @@
     return text;
   }
 
+  async function loadSkillContent(skill) {
+    if (!skill || !skill.filename || !window.JSZip) {
+      throw new Error("Skill archive support is unavailable.");
+    }
+
+    var response = await fetch("skills/" + skill.filename);
+    if (!response.ok) {
+      throw new Error("Unable to load skill archive: " + skill.filename);
+    }
+
+    var archive = await window.JSZip.loadAsync(await response.arrayBuffer());
+    var skillPath = Object.keys(archive.files).find(function (path) {
+      return /(^|\/)SKILL\.md$/.test(path) && !archive.files[path].dir;
+    });
+
+    if (!skillPath) {
+      throw new Error("Skill archive does not contain SKILL.md.");
+    }
+
+    return archive.files[skillPath].async("string");
+  }
+
   function renderMarkdown(markdownText) {
     var source = markdownText || "";
     if (source.startsWith("---")) {
@@ -612,7 +634,30 @@
     }
 
     var contentText = item.content || "";
-    if (item.contentPath) {
+    if (type === "skill") {
+      pre.textContent = "Loading skill...";
+      scrollWrap.appendChild(pre);
+
+      loadSkillContent(item)
+        .then(function (text) {
+          contentText = text;
+          renderViewerContent(text);
+        })
+        .catch(function () {
+          if (item.contentPath) {
+            loadTextContent(item.contentPath)
+              .then(function (text) {
+                contentText = text;
+                renderViewerContent(text);
+              })
+              .catch(function () {
+                renderViewerContent(contentText || "Skill content could not be loaded.");
+              });
+          } else {
+            renderViewerContent(contentText || "Skill content could not be loaded.");
+          }
+        });
+    } else if (item.contentPath) {
       pre.textContent = "Loading content...";
       scrollWrap.appendChild(pre);
 
