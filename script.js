@@ -317,7 +317,7 @@
       download.textContent = "Download";
 
       actions.appendChild(download);
-      if (skill.contentPath || skill.content) {
+      if (skill.filename) {
         var view = document.createElement("a");
         view.className = "btn-inline";
         view.href = "view.html?type=skill&id=" + encodeURIComponent(skill.id);
