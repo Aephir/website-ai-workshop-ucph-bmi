@@ -59,12 +59,12 @@ const PLUGIN_COMPONENTS = [
   { id: "claude-citation-verifier", platform: "claude", name: "citation-verifier", type: "Subagent", description: "Runs an independent, read-only citation review.", contentPath: "plugins/Claude/grant-writer-plugin/agents/citation-verifier.md" },
   { id: "claude-hooks", platform: "claude", name: "quality-control hooks", type: "Hooks", description: "Runs phrase and claims-ledger checks after relevant Markdown edits.", contentPath: "plugins/Claude/grant-writer-plugin/hooks/hooks.json" },
   { id: "claude-connectors", platform: "claude", name: "research connectors", type: "MCP servers", description: "Connects PubMed, ClinicalTrials.gov, bioRxiv, and BioRender.", contentPath: "plugins/Claude/grant-writer-plugin/.claude-plugin/plugin.json" },
-  { id: "codex-grant-writer", platform: "chatgpt", name: "grant-writer", type: "Skill", description: "Plans, drafts, and reviews funding applications.", contentPath: "plugins/Claude/Codex/grant-writer/skills/grant-writer/SKILL.md" },
-  { id: "codex-citation-check", platform: "chatgpt", name: "citation-check", type: "Skill", description: "Verifies the references and claims in a draft.", contentPath: "plugins/Claude/Codex/grant-writer/skills/citation-check/SKILL.md" },
-  { id: "codex-citation-verifier", platform: "chatgpt", name: "citation-verifier", type: "Skill", description: "Runs an independent, read-only citation review.", contentPath: "plugins/Claude/Codex/grant-writer/skills/citation-verifier/SKILL.md" },
-  { id: "codex-ai-slop-check", platform: "chatgpt", name: "ai-slop-check", type: "Skill", description: "Checks drafts for canned phrasing, redundancy, and writing tells.", contentPath: "plugins/Claude/Codex/grant-writer/skills/ai-slop-check/SKILL.md" },
-  { id: "codex-phrase-sweep", platform: "chatgpt", name: "phrase_sweep.py", type: "Script", description: "Runs a deterministic phrase check on a Markdown draft.", contentPath: "plugins/Claude/Codex/grant-writer/scripts/phrase_sweep.py" },
-  { id: "codex-ledger-check", platform: "chatgpt", name: "check_ledger_format.py", type: "Script", description: "Checks the structure of a claims ledger.", contentPath: "plugins/Claude/Codex/grant-writer/scripts/check_ledger_format.py" }
+  { id: "codex-grant-writer", platform: "chatgpt", name: "grant-writer", type: "Skill", description: "Plans, drafts, and reviews funding applications.", contentPath: "plugins/Codex/grant-writer/skills/grant-writer/SKILL.md" },
+  { id: "codex-citation-check", platform: "chatgpt", name: "citation-check", type: "Skill", description: "Verifies the references and claims in a draft.", contentPath: "plugins/Codex/grant-writer/skills/citation-check/SKILL.md" },
+  { id: "codex-citation-verifier", platform: "chatgpt", name: "citation-verifier", type: "Skill", description: "Runs an independent, read-only citation review.", contentPath: "plugins/Codex/grant-writer/skills/citation-verifier/SKILL.md" },
+  { id: "codex-ai-slop-check", platform: "chatgpt", name: "ai-slop-check", type: "Skill", description: "Checks drafts for canned phrasing, redundancy, and writing tells.", contentPath: "plugins/Codex/grant-writer/skills/ai-slop-check/SKILL.md" },
+  { id: "codex-phrase-sweep", platform: "chatgpt", name: "phrase_sweep.py", type: "Script", description: "Runs a deterministic phrase check on a Markdown draft.", contentPath: "plugins/Codex/grant-writer/scripts/phrase_sweep.py" },
+  { id: "codex-ledger-check", platform: "chatgpt", name: "check_ledger_format.py", type: "Script", description: "Checks the structure of a claims ledger.", contentPath: "plugins/Codex/grant-writer/scripts/check_ledger_format.py" }
 ];
 
 const CONNECTORS = [
