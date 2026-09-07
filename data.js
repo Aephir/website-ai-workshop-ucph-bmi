@@ -42,6 +42,31 @@ const SKILLS = [
   { id: "zotero-word-citations", name: "zotero-word-citations", description: "Build live Zotero-linked citations and reference lists in Word documents, with a connectivity check and explicit fallback rules.", filename: "zotero-word-citations.skill", contentPath: "skills/zotero-word-citations.md" }
 ];
 
+const PLUGINS = [
+  {
+    id: "grant-writer",
+    name: "grant-writer",
+    description: "A Claude plugin for drafting grant applications with scope control, research-backed citation checks, and final-draft quality checks.",
+    repository: "https://github.com/Aephir/Claude-Plugins",
+    contents: "Three skills, a citation-verifier subagent, quality-control hooks, and MCP connections for PubMed, bioRxiv, ClinicalTrials, and BioRender."
+  }
+];
+
+const PLUGIN_COMPONENTS = [
+  { id: "claude-grant-writer", platform: "claude", name: "grant-writer", type: "Skill", description: "Plans, drafts, and reviews funding applications.", contentPath: "plugins/Claude/grant-writer-plugin/skills/grant-writer/SKILL.md" },
+  { id: "claude-citation-check", platform: "claude", name: "citation-check", type: "Skill", description: "Verifies the references and claims in a draft.", contentPath: "plugins/Claude/grant-writer-plugin/skills/citation-check/SKILL.md" },
+  { id: "claude-ai-slop-check", platform: "claude", name: "ai-slop-check", type: "Skill", description: "Checks drafts for canned phrasing, redundancy, and writing tells.", contentPath: "plugins/Claude/grant-writer-plugin/skills/ai-slop-check/SKILL.md" },
+  { id: "claude-citation-verifier", platform: "claude", name: "citation-verifier", type: "Subagent", description: "Runs an independent, read-only citation review.", contentPath: "plugins/Claude/grant-writer-plugin/agents/citation-verifier.md" },
+  { id: "claude-hooks", platform: "claude", name: "quality-control hooks", type: "Hooks", description: "Runs phrase and claims-ledger checks after relevant Markdown edits.", contentPath: "plugins/Claude/grant-writer-plugin/hooks/hooks.json" },
+  { id: "claude-connectors", platform: "claude", name: "research connectors", type: "MCP servers", description: "Connects PubMed, ClinicalTrials.gov, bioRxiv, and BioRender.", contentPath: "plugins/Claude/grant-writer-plugin/.claude-plugin/plugin.json" },
+  { id: "codex-grant-writer", platform: "chatgpt", name: "grant-writer", type: "Skill", description: "Plans, drafts, and reviews funding applications.", contentPath: "plugins/Claude/Codex/grant-writer/skills/grant-writer/SKILL.md" },
+  { id: "codex-citation-check", platform: "chatgpt", name: "citation-check", type: "Skill", description: "Verifies the references and claims in a draft.", contentPath: "plugins/Claude/Codex/grant-writer/skills/citation-check/SKILL.md" },
+  { id: "codex-citation-verifier", platform: "chatgpt", name: "citation-verifier", type: "Skill", description: "Runs an independent, read-only citation review.", contentPath: "plugins/Claude/Codex/grant-writer/skills/citation-verifier/SKILL.md" },
+  { id: "codex-ai-slop-check", platform: "chatgpt", name: "ai-slop-check", type: "Skill", description: "Checks drafts for canned phrasing, redundancy, and writing tells.", contentPath: "plugins/Claude/Codex/grant-writer/skills/ai-slop-check/SKILL.md" },
+  { id: "codex-phrase-sweep", platform: "chatgpt", name: "phrase_sweep.py", type: "Script", description: "Runs a deterministic phrase check on a Markdown draft.", contentPath: "plugins/Claude/Codex/grant-writer/scripts/phrase_sweep.py" },
+  { id: "codex-ledger-check", platform: "chatgpt", name: "check_ledger_format.py", type: "Script", description: "Checks the structure of a claims ledger.", contentPath: "plugins/Claude/Codex/grant-writer/scripts/check_ledger_format.py" }
+];
+
 const CONNECTORS = [
   {
     id: "claude-desktop-config",
@@ -86,6 +111,8 @@ const SETUP_CONTENT_PATH = "connectors/memory-vault.md";
 
 window.PROMPT_SECTIONS = PROMPT_SECTIONS;
 window.SKILLS = SKILLS;
+window.PLUGINS = PLUGINS;
+window.PLUGIN_COMPONENTS = PLUGIN_COMPONENTS;
 window.CONNECTORS = CONNECTORS;
 window.HOMEWORK = HOMEWORK;
 window.SETUP_CONTENT_PATH = SETUP_CONTENT_PATH;

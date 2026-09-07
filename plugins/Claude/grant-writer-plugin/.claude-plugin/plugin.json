@@ -1,0 +1,31 @@
+{
+  "name": "grant-writer",
+  "description": "Draft grant/funding applications with locked project scope, program-specific structure, retrieval-grounded citation discipline, and an auditable decision trail — plus independent citation verification and AI-slop/redundancy checking before a draft is called done.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Walden Bjørn-Yoshimoto"
+  },
+  "license": "MIT",
+  "keywords": ["grant-writing", "academic", "citations", "research"],
+  "skills": ["./skills/grant-writer/", "./skills/citation-check/", "./skills/ai-slop-check/"],
+  "agents": ["./agents/citation-verifier.md"],
+  "hooks": "./hooks/hooks.json",
+  "mcpServers": {
+    "PubMed": {
+      "type": "http",
+      "url": "https://pubmed.mcp.claude.com/mcp"
+    },
+    "bioRxiv": {
+      "type": "http",
+      "url": "https://mcp.deepsense.ai/biorxiv/mcp"
+    },
+    "ClinicalTrials": {
+      "type": "http",
+      "url": "https://mcp.deepsense.ai/clinical_trials/mcp"
+    },
+    "BioRender": {
+      "type": "http",
+      "url": "https://mcp.services.biorender.com/mcp"
+    }
+  }
+}

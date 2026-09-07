@@ -15,7 +15,7 @@
     var page = document.body ? document.body.dataset.page : "";
     if (!page && window.location.pathname.endsWith("/view.html")) {
       var viewerType = new URLSearchParams(window.location.search).get("type");
-      page = viewerType === "skill" ? "skills" : viewerType === "connector" ? "connectors" : "";
+      page = viewerType === "skill" ? "skills" : viewerType === "connector" ? "connectors" : viewerType === "plugin" ? "plugins" : "";
     }
     var links = document.querySelectorAll(".nav-link[data-nav]");
     links.forEach(function (link) {
@@ -332,6 +332,114 @@
     });
   }
 
+  function initPluginsPage() {
+    var tabs = document.querySelectorAll("[data-plugin-platform]");
+    var panels = document.querySelectorAll("[data-plugin-panel]");
+    var container = byId("claude-plugins-grid");
+    var plugins = window.PLUGINS;
+
+    if (tabs.length && panels.length) {
+      function selectPlatform(platform) {
+        tabs.forEach(function (tab) {
+          var isSelected = tab.dataset.pluginPlatform === platform;
+          tab.classList.toggle("is-active", isSelected);
+          tab.setAttribute("aria-selected", String(isSelected));
+        });
+        panels.forEach(function (panel) {
+          panel.hidden = panel.dataset.pluginPanel !== platform;
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          selectPlatform(tab.dataset.pluginPlatform);
+        });
+      });
+      selectPlatform("claude");
+    }
+
+    document.querySelectorAll("pre[data-copy-code] > code").forEach(function (code) {
+      var pre = code.parentElement;
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "copy-btn markdown-copy";
+      button.textContent = "Copy";
+      button.dataset.defaultLabel = "Copy";
+      button.addEventListener("click", function () {
+        copyText(code.textContent, button);
+      });
+      pre.insertBefore(button, code);
+    });
+
+    if (!container || !isArray(plugins)) {
+      return;
+    }
+
+    plugins.forEach(function (plugin) {
+      var card = document.createElement("article");
+      card.className = "card reveal";
+      var body = document.createElement("div");
+      body.className = "card-body";
+      var name = document.createElement("h2");
+      name.textContent = plugin.name;
+      var description = document.createElement("p");
+      description.textContent = plugin.description;
+      var contents = document.createElement("p");
+      contents.textContent = plugin.contents;
+      var actions = document.createElement("div");
+      actions.className = "card-actions";
+      var repository = document.createElement("a");
+      repository.className = "btn-inline";
+      repository.href = plugin.repository;
+      repository.target = "_blank";
+      repository.rel = "noopener noreferrer";
+      repository.textContent = "Open GitHub repository";
+
+      actions.appendChild(repository);
+      body.appendChild(name);
+      body.appendChild(description);
+      body.appendChild(contents);
+      body.appendChild(actions);
+      card.appendChild(body);
+      container.appendChild(card);
+    });
+
+    ["claude", "chatgpt"].forEach(function (platform) {
+      var componentContainer = byId(platform + "-plugin-components");
+      if (!componentContainer || !isArray(window.PLUGIN_COMPONENTS)) {
+        return;
+      }
+      window.PLUGIN_COMPONENTS.filter(function (component) {
+        return component.platform === platform;
+      }).forEach(function (component) {
+        var card = document.createElement("article");
+        card.className = "card reveal";
+        var body = document.createElement("div");
+        body.className = "card-body";
+        var type = document.createElement("p");
+        type.className = "component-type";
+        type.textContent = component.type;
+        var name = document.createElement("h3");
+        name.textContent = component.name;
+        var description = document.createElement("p");
+        description.textContent = component.description;
+        var actions = document.createElement("div");
+        actions.className = "card-actions";
+        var view = document.createElement("a");
+        view.className = "btn-inline";
+        view.href = "view.html?type=plugin&id=" + encodeURIComponent(component.id);
+        view.textContent = "View";
+        actions.appendChild(view);
+        body.appendChild(type);
+        body.appendChild(name);
+        body.appendChild(description);
+        body.appendChild(actions);
+        card.appendChild(body);
+        componentContainer.appendChild(card);
+      });
+    });
+  }
+
   function initConnectorsPage() {
     var container = byId("connectors-grid");
     var connectors = window.CONNECTORS;
@@ -541,6 +649,10 @@
       list = window.CONNECTORS;
       backHref = "connectors.html";
       backLabel = "Back to Connectors";
+    } else if (type === "plugin") {
+      list = window.PLUGIN_COMPONENTS;
+      backHref = "plugins.html";
+      backLabel = "Back to Plugins";
     } else {
       renderNotFound(target, "index.html", "Back to Home");
       return;
@@ -607,7 +719,7 @@
     markdown.className = "markdown-body";
 
     function renderViewerContent(text) {
-      if (type === "skill") {
+      if (type === "skill" || type === "plugin") {
         renderVerbatimContent(scrollWrap, text);
         return;
       }
@@ -711,6 +823,7 @@
 
     initPromptsPage();
     initSkillsPage();
+    initPluginsPage();
     initConnectorsPage();
     initSetupPage();
     initScriptsPage();

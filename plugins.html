@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plugins | AI Workshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="plugins">
+    <div class="page-wrap">
+      <header class="site-header">
+        <div class="header-inner">
+          <a class="brand" href="index.html" aria-label="Walden Consulting home"><img class="brand-logo" src="img/waldenconsulting_color_1.webp" alt="Walden Consulting" /></a>
+          <nav class="site-nav" aria-label="Primary">
+            <a class="nav-link" data-nav="home" href="index.html">Home</a>
+            <a class="nav-link" data-nav="setup" href="setup.html">Setup</a>
+            <a class="nav-link" data-nav="prompts" href="prompts.html">Prompts</a>
+            <a class="nav-link" data-nav="skills" href="skills.html">Skills</a>
+            <a class="nav-link" data-nav="plugins" href="plugins.html">Plugins</a>
+            <a class="nav-link" data-nav="connectors" href="connectors.html">Connectors</a>
+            <a class="nav-link" data-nav="scripts" href="scripts.html">Scripts</a>
+            <a class="nav-link" data-nav="homework" href="homework.html">Homework</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <h1 class="page-title reveal">Plugins</h1>
+        <p class="page-subtitle reveal">A plugin is an installable package of AI capabilities. What belongs in a package, and how it is installed, depends on the platform.</p>
+        <div class="platform-tabs reveal" role="tablist" aria-label="AI platform">
+          <button class="platform-tab" type="button" role="tab" aria-selected="false" data-plugin-platform="claude">Claude Code / Cowork</button>
+          <button class="platform-tab" type="button" role="tab" aria-selected="false" data-plugin-platform="copilot">Microsoft / GitHub Copilot</button>
+          <button class="platform-tab" type="button" role="tab" aria-selected="false" data-plugin-platform="chatgpt">ChatGPT</button>
+          <button class="platform-tab" type="button" role="tab" aria-selected="false" data-plugin-platform="gemini">Gemini CLI</button>
+          <button class="platform-tab" type="button" role="tab" aria-selected="false" data-plugin-platform="perplexity">Perplexity</button>
+        </div>
+
+        <section class="platform-content" data-plugin-panel="claude" aria-label="Claude Code and Cowork plugins">
+          <h2>Claude Code / Cowork</h2>
+          <p>Claude plugins are installable packages that can combine skills, subagents, hooks, and MCP servers behind one manifest. They can be distributed through a marketplace repository.</p>
+          <section class="code-panel plugin-install reveal" aria-label="Claude plugin installation commands"><pre data-copy-code><code>/plugin marketplace add https://github.com/Aephir/Claude-Plugins
+/plugin install grant-writer@waldenb-plugins</code></pre></section>
+          <section id="claude-plugins-grid" class="card-grid" aria-label="Available Claude plugins"></section>
+          <section id="claude-plugin-components" class="card-grid plugin-components" aria-label="Grant Writer Claude plugin components"></section>
+        </section>
+
+        <section class="platform-content" data-plugin-panel="copilot" aria-label="Microsoft and GitHub Copilot plugins" hidden>
+          <h2>Microsoft / GitHub Copilot</h2>
+          <p>Copilot does not use one plugin bundle that joins every capability. Repository instructions, agent instructions, and skills are stored as separate repository files, while MCP servers are configured independently. This keeps capabilities composable, but there is no single plugin manifest or marketplace install for the whole set.</p>
+        </section>
+
+        <section class="platform-content" data-plugin-panel="chatgpt" aria-label="ChatGPT plugins" hidden>
+          <h2>ChatGPT</h2>
+          <p>ChatGPT and Codex use a Plugin Directory to distribute workflow packages. A plugin can include skills, apps, or both; apps provide connections to external services and may use MCP. This local package is skills-only.</p>
+          <ol class="plugin-steps">
+            <li>Download and unzip it to a permanent folder.</li>
+            <li>Open the ChatGPT desktop app in Work mode or Codex.</li>
+            <li>Start a chat that can access the unzipped folder.</li>
+            <li>Send the command below.</li>
+            <li>Restart or refresh ChatGPT desktop.</li>
+            <li>Open the Plugins Directory, select the personal/local source, and install Grant Writer.</li>
+            <li>Start a new chat before using it.</li>
+          </ol>
+          <section class="code-panel plugin-install reveal" aria-label="Codex plugin installation command"><pre data-copy-code><code>Use $plugin-creator to add the existing Grant Writer plugin at [paste the absolute path to the unzipped grant-writer folder] to my personal marketplace.</code></pre></section>
+          <div class="card-actions plugin-download"><a class="btn" href="plugins/Claude/Codex/grant-writer.zip" download="grant-writer.zip">Download Grant Writer ZIP</a></div>
+          <section id="chatgpt-plugin-components" class="card-grid plugin-components" aria-label="Grant Writer ChatGPT and Codex plugin components"></section>
+        </section>
+
+        <section class="platform-content" data-plugin-panel="gemini" aria-label="Gemini CLI extensions" hidden>
+          <h2>Gemini CLI</h2>
+          <p>Gemini CLI calls its installable bundles extensions. An extension can package prompts, MCP servers, custom commands, hooks, subagents, and agent skills. Extensions can be installed from a GitHub repository or a local path, and are available through the extension gallery.</p>
+        </section>
+
+        <section class="platform-content" data-plugin-panel="perplexity" aria-label="Perplexity integrations" hidden>
+          <h2>Perplexity</h2>
+          <p>Perplexity provides app connectors for external services and supports MCP connections where available, but it does not currently offer a general plugin bundle for combining skills, agents, hooks, and MCP servers into one installable package.</p>
+        </section>
+      </main>
+
+      <footer class="site-footer"><div class="footer-inner"><span>&copy; <span data-year></span> AI Workshop demo site.</span><span> </span><a href="prompt.html">Built with a single AI prompt -&gt;</a></div></footer>
+    </div>
+    <script src="data.js"></script>
+    <script src="script.js?v=20260907-2"></script>
+  </body>
+</html>

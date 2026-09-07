@@ -423,6 +423,31 @@ pre {
   color: var(--text-1);
 }
 
+.component-type {
+  color: var(--accent) !important;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.plugin-components {
+  margin-top: 18px;
+}
+
+.plugin-steps {
+  color: var(--text-1);
+  margin: 18px 0;
+  padding-left: 22px;
+}
+
+.plugin-steps li + li {
+  margin-top: 8px;
+}
+
+.plugin-download {
+  margin: 18px 0;
+}
+
 .card-actions {
   display: flex;
   gap: 10px;

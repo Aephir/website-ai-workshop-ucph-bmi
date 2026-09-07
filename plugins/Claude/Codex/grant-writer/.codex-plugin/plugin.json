@@ -1,0 +1,25 @@
+{
+  "name": "grant-writer",
+  "version": "0.2.0",
+  "description": "Draft and review funding applications with locked scope, current-call checks, grounded citations, and an auditable decision trail.",
+  "author": {
+    "name": "Walden Bjørn-Yoshimoto"
+  },
+  "license": "MIT",
+  "keywords": ["grant-writing", "academic", "citations", "research"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Grant Writer",
+    "shortDescription": "Draft rigorous, citation-grounded funding applications.",
+    "longDescription": "Plan, draft, revise, and audit grant narratives against the current funding call, a locked project brief, and retrieved evidence. Includes citation verification, AI-writing-tell checks, and auditable project logs.",
+    "developerName": "Walden Bjørn-Yoshimoto",
+    "category": "Productivity",
+    "capabilities": ["Research", "Write", "Review"],
+    "defaultPrompt": [
+      "Draft a grant narrative from my BRIEF and current call.",
+      "Audit the citations in this funding application.",
+      "Check this draft for AI-writing tells and redundancy."
+    ],
+    "brandColor": "#315C4C"
+  }
+}
