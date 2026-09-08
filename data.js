@@ -59,7 +59,11 @@ const PLUGINS = [
     name: "grant-writer",
     description: "A Claude plugin for drafting grant applications with scope control, research-backed citation checks, and final-draft quality checks.",
     repository: "https://github.com/Aephir/Claude-Plugins",
-    contents: "Three skills, a citation-verifier subagent, quality-control hooks, and MCP connections for PubMed, bioRxiv, ClinicalTrials, and BioRender."
+    contents: "Three skills, a citation-verifier subagent, quality-control hooks, and MCP connections for PubMed, bioRxiv, ClinicalTrials, and BioRender.",
+    downloads: [
+      { label: "Download .plugin", href: "plugins/grant-writer-plugin.plugin", filename: "grant-writer-plugin.plugin" },
+      { label: "Download .zip", href: "plugins/grant-writer-plugin.zip", filename: "grant-writer-plugin.zip" }
+    ]
   }
 ];
 

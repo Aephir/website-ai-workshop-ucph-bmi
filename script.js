@@ -396,6 +396,14 @@
       repository.textContent = "Open GitHub repository";
 
       actions.appendChild(repository);
+      (plugin.downloads || []).forEach(function (downloadInfo) {
+        var download = document.createElement("a");
+        download.className = "btn-inline";
+        download.href = downloadInfo.href;
+        download.setAttribute("download", downloadInfo.filename);
+        download.textContent = downloadInfo.label;
+        actions.appendChild(download);
+      });
       body.appendChild(name);
       body.appendChild(description);
       body.appendChild(contents);
