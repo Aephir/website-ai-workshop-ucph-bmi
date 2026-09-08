@@ -1,9 +1,3 @@
----
-Citation-check exercise (Module 4)
-Source: workshop deck v0.2, Module 4 — Multi-step work (slide 43). Deck sends participants to "workshop.walden.dk -> Prompts -> citation-check-exercise" to copy this verbatim, then run the citation-check skill on it. NOT YET LIVE on the site as of 2026-09-08 -- wire this into data.js's PROMPT_SECTIONS before the workshop, or slide 43's pointer resolves to nothing.
-Deliberately seeded with a mix of real and fabricated references so citation-check has something to catch live -- do not "fix" the citations here.
----
-
 Use citation-check skill on the following:
 
 ```

@@ -7,15 +7,8 @@ const PROMPT_SECTIONS = [
       { title: "Memory vault: single project", contentPath: "prompts/11-memory-vault-single-project.md" },
       { title: "Memory vault: universal", contentPath: "prompts/12-memory-vault-universal.md" },
       { title: "Add-on: skill packager", contentPath: "prompts/13-addon-skill-packager.md" },
-      { title: "Add-on: setup assistant", contentPath: "prompts/14-addon-setup-assistant.md" }
-    ]
-  },
-  {
-    id: "module-2",
-    title: "Module 2: Setup exercise",
-    description: "Write a project summary, then test whether the AI can use it reliably.",
-    prompts: [
-      { title: "Setup exercise: write it, then prove it", contentPath: "prompts/21-setup-exercise.md" }
+      { title: "Add-on: setup assistant", contentPath: "prompts/14-addon-setup-assistant.md" },
+      { title: "Memory vault structure", contentPath: "prompts/setup-memory-vault-structure.md" }
     ]
   },
   {
@@ -24,7 +17,10 @@ const PROMPT_SECTIONS = [
     description: "Turn corrections into reusable instructions and test a real connector.",
     prompts: [
       { title: "Self-update standing instruction", contentPath: "prompts/31-self-update-standing-instruction.md" },
-      { title: "Connector test query", contentPath: "prompts/32-connector-test-query.md" }
+      { title: "Summarize methods", contentPath: "prompts/32-connector-summarize-methods.md" },
+      { title: "Find sample size and species", contentPath: "prompts/33-connector-sample-size.md" },
+      { title: "Search for a mention", contentPath: "prompts/34-connector-mentions-search.md" },
+      { title: "Compare limitations", contentPath: "prompts/35-connector-compare-limitations.md" }
     ]
   },
   {
