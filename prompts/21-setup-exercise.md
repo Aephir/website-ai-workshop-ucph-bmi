@@ -1,7 +1,8 @@
 ---
-Setup exercise: write it, then prove it
-Source: workshop deck v0.2, Module 1 (slides 13-14). Baseline test prompt and correction step confirmed live in the deck's speaker notes — do not change the wording below without updating the deck to match.
-Per-tool menu paths: [to be updated] — re-verify against each tool's live UI the week before the workshop, not just once during prep.
+Setup exercise: write it, then prove it (Module 2)
+Source: workshop deck v0.2, Module 2 — Persistent instructions (slides 19-24). Baseline test prompt and correction step confirmed live in the deck's speaker notes — do not change the wording below without updating the deck to match.
+This is a live participant exercise, separate from the Setup page (workshop.walden.dk → Setup), which covers the memory vault plus Walden's own ready-to-paste Global/Project Instructions. This exercise has participants write and test their own persona from scratch.
+Per-tool menu paths: [to be updated] — re-verify against each tool's live UI the week before the workshop, not just once during prep. Re-verified 2026-09-05 against OpenAI/Microsoft/Anthropic support docs, then corrected against Walden's actual live screen — the ChatGPT row above was wrong (support docs are stale; OpenAI has merged ChatGPT and Codex into one app, and "Codex instructions" is now the real, only field, applying to all chats). Claude's field label is still unconfirmed against a live account (two different labels found in sourcing) — check your own Settings before presenting.
 ---
 
 # Exercise: write it, then prove it
@@ -30,9 +31,9 @@ Adapt this template:
 
 | Tool | Where |
 |---|---|
-| Claude | Settings → Profile → "What preferences should Claude consider in responses?" [to be updated] |
-| ChatGPT | Profile icon → Customize ChatGPT, or Settings → Personalization → Custom Instructions [to be updated] |
-| Microsoft Copilot | Copilot Chat → Settings → Personalization → Edit instructions [to be updated] |
+| Claude | Click your initials (bottom left) → Settings → "Instructions for Claude" [to be updated — confirm exact wording on the day; support docs and UI labels have drifted before] |
+| ChatGPT | Settings → Personalization → "Codex instructions" — despite the name, applies to all chats (per OpenAI's own UI copy: "for all chats"); confirmed against Walden's live account 2026-09-05. This is the unified ChatGPT/Codex app — there is no separate "Custom Instructions" anymore [to be updated] |
+| Microsoft Copilot (Copilot Chat, UCPH/institutional) | Copilot Chat → Settings and more (⋯, top right) → Chat settings → Personalization → Custom instructions → Edit instructions [to be updated] |
 | Perplexity | Settings → Personalization → Custom Instructions [to be updated] |
 | Gemini | Menu → Settings & help → Personal Intelligence — personal accounts only, not available on UCPH work accounts [to be updated] |
 

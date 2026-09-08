@@ -1,6 +1,6 @@
 ---
 Add-on prompt: setup assistant
-Use: paste BEFORE `01-memory-vault-single-project.md` or `02-memory-vault-universal.md` if you don't already have a working project container, vault folder, or connector, and want help doing the mechanical part.
+Use: paste BEFORE `11-memory-vault-single-project.md` or `12-memory-vault-universal.md` if you don't already have a working project container, vault folder, or connector, and want help doing the mechanical part.
 
 Usable on all five platforms in the sense that any of them can walk you through it — but the actual steps differ a lot per platform and change often, so treat the answer as a starting point, not gospel. Checked 2026-08-22.
 ---

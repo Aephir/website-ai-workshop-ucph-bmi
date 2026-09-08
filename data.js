@@ -1,39 +1,54 @@
 const PROMPT_SECTIONS = [
   {
-    id: "memory-vault",
-    title: "Module 1: Set it up",
-    description: "A four-file memory-vault prompt set for keeping project context durable across conversations. Read the usage note first, then choose one base prompt and add-ons.",
+    id: "module-1",
+    title: "Module 1: Memory Vault",
+    description: "Set up durable project context and package reusable instructions.",
     prompts: [
-      { title: "Memory vault: single project", contentPath: "prompts/01-memory-vault-single-project.md" },
-      { title: "Memory vault: universal", contentPath: "prompts/02-memory-vault-universal.md" },
-      { title: "Add-on: skill packager", contentPath: "prompts/03-addon-skill-packager.md" },
-      { title: "Add-on: setup assistant", contentPath: "prompts/04-addon-setup-assistant.md" }
+      { title: "Memory vault: single project", contentPath: "prompts/11-memory-vault-single-project.md" },
+      { title: "Memory vault: universal", contentPath: "prompts/12-memory-vault-universal.md" },
+      { title: "Add-on: skill packager", contentPath: "prompts/13-addon-skill-packager.md" },
+      { title: "Add-on: setup assistant", contentPath: "prompts/14-addon-setup-assistant.md" }
     ]
   },
   {
-    id: "prompting-techniques",
-    title: "Prompting techniques",
-    description: "Concrete patterns from the workshop for making AI outputs more specific, testable, and useful.",
+    id: "module-2",
+    title: "Module 2: Setup exercise",
+    description: "Write a project summary, then test whether the AI can use it reliably.",
     prompts: [
-      { title: "Worst-ideas-first", contentPath: "prompts/06-worst-ideas-first.md" },
-      { title: "Constraint injection", contentPath: "prompts/08-constraint-injection.md" },
-      { title: "Idea stress test", contentPath: "prompts/09-idea-stress-test.md" },
-      { title: "CRAFT", contentPath: "prompts/10-craft.md" }
+      { title: "Setup exercise: write it, then prove it", contentPath: "prompts/21-setup-exercise.md" }
     ]
   },
   {
-    id: "exercises-and-workflows",
-    title: "Exercises and workflows",
-    description: "Exercises for testing a live connection and turning corrections into durable instructions.",
+    id: "module-3",
+    title: "Module 3: Skills and connectors",
+    description: "Turn corrections into reusable instructions and test a real connector.",
     prompts: [
-      { title: "Ask a real question about your own paper", contentPath: "prompts/07-connector-test-query.md" },
-      { title: "Self-update standing instruction", contentPath: "prompts/11-self-update-standing-instruction.md" }
+      { title: "Self-update standing instruction", contentPath: "prompts/31-self-update-standing-instruction.md" },
+      { title: "Connector test query", contentPath: "prompts/32-connector-test-query.md" }
+    ]
+  },
+  {
+    id: "module-4",
+    title: "Module 4: Citation checking",
+    description: "Practice a structured citation verification workflow.",
+    prompts: [
+      { title: "Citation-check exercise", contentPath: "prompts/41-citation-check-exercise.md" }
+    ]
+  },
+  {
+    id: "module-6",
+    title: "Module 6: Prompting techniques",
+    description: "Make AI outputs more specific, testable, and useful.",
+    prompts: [
+      { title: "CRAFT", contentPath: "prompts/61-craft.md" },
+      { title: "Constraint injection", contentPath: "prompts/62-constraint-injection.md" },
+      { title: "Worst-ideas-first", contentPath: "prompts/63-worst-ideas-first.md" },
+      { title: "Idea stress test", contentPath: "prompts/64-idea-stress-test.md" }
     ]
   }
 ];
 
 const SKILLS = [
-  { id: "adversarial-debate-review", name: "adversarial-debate-review", description: "Run a structured three-agent adversarial debate to stress-test a specific factual claim or strategic decision.", filename: "adversarial-debate-review.skill", contentPath: "skills/adversarial-debate-review.md" },
   { id: "citation-check", name: "citation-check", description: "Verify that citations and references exist, have correct metadata, support their claims, and have not been retracted.", filename: "citation-check.skill", contentPath: "skills/citation-check.md" },
   { id: "consolidate-instructions", name: "consolidate-instructions", description: "Review corrections and preferences logged in a memory queue and propose exact wording for standing instructions or skills.", filename: "consolidate-instructions.skill", contentPath: "skills/consolidate-instructions.md" },
   { id: "efficient-reports", name: "efficient-reports", description: "Write concise, decision-ready reports with a front-loaded bottom line, appropriate evidence, and no filler.", filename: "efficient-reports.skill" },
@@ -67,43 +82,62 @@ const PLUGIN_COMPONENTS = [
   { id: "codex-ledger-check", platform: "chatgpt", name: "check_ledger_format.py", type: "Script", description: "Checks the structure of a claims ledger.", contentPath: "plugins/Codex/grant-writer/scripts/check_ledger_format.py" }
 ];
 
-const CONNECTORS = [
+const CONNECTOR_PLATFORMS = [
   {
-    id: "claude-desktop-config",
-    name: "Editing claude_desktop_config.json",
-    description: "How to find and edit your Claude Desktop config file to add MCP connectors.",
-    filename: "claude-desktop-config.md",
-    contentPath: "connectors/claude-desktop-config.md",
-    content: `# Editing claude_desktop_config.json\n\nPlaceholder step-by-step guide text goes here, including an example JSON config block.\n\n## Example JSON\n\n\`\`\`json\n{\n  "mcpServers": {\n    "example": {\n      "command": "node",\n      "args": ["server.js"]\n    }\n  }\n}\n\`\`\``
+    id: "claude",
+    name: "Claude",
+    sections: [
+      ["Store", "Settings → Connectors → Browse connectors, or from any chat use Search and tools → Add connectors. Click a connector, select Connect, and authenticate."],
+      ["Your own", "Customize → Connectors → + → Add custom connector, then paste your remote MCP server URL. It supports authless and OAuth-based servers. On Team/Enterprise, an organization owner adds the URL under Organization settings → Connectors first; members then connect it the same way."],
+      ["Plan note", "Paid plans only: Pro, Max, Team, and Enterprise. Free plans get one custom connector. Browsing and adding works on web, desktop, and Cowork, not mobile."],
+      ["Local-only note", "A locally run MCP server configured through claude_desktop_config.json is separate from the connector UI. Claude Desktop will not pick up a remote server placed directly in that file."]
+    ]
   },
   {
-    id: "obsidian-vault",
-    name: "Connecting an Obsidian Vault",
-    description: "How to set up an MCP connector for an Obsidian vault.",
-    filename: "obsidian-vault.md",
-    contentPath: "connectors/obsidian-vault.md",
-    content: `# Connecting an Obsidian Vault\n\nPlaceholder step-by-step guide text goes here.\n\n1. Locate your vault path\n2. Configure the connector\n3. Restart the client and verify indexing`
+    id: "copilot",
+    name: "Microsoft Copilot",
+    sections: [
+      ["Store", "There is no self-serve browse-connectors store for end users. Connectors such as SharePoint sites and Graph connectors are provisioned by IT or an administrator. Once enabled, they appear as sources: in Copilot Chat, type / and search by name, or use Add and manage sources (+) to attach files, cloud files, or a SharePoint site."],
+      ["Your own", "There is no self-serve custom-connector option in ordinary chat. Custom connectors require Copilot Studio, an add-on configured by IT or an administrator."],
+      ["Plan note", "Access is administrator-gated end to end. What an individual sees depends on what their organization has enabled."]
+    ]
   },
   {
-    id: "zotero",
-    name: "Connecting Zotero",
-    description: "How to set up an MCP connector for a Zotero library.",
-    filename: "zotero.md",
-    contentPath: "connectors/zotero.md",
-    content: `# Connecting Zotero\n\nPlaceholder step-by-step guide text goes here.\n\n1. Export or access local metadata\n2. Configure connector credentials\n3. Test retrieval against known references`
+    id: "chatgpt",
+    name: "ChatGPT",
+    sections: [
+      ["Store", "OpenAI has folded Connectors into the Apps ecosystem. Browse through the Plugins or Apps directory from the composer's + menu or Settings → Apps, choose an app, select Connect, and authenticate. Naming and locations may continue to change."],
+      ["Your own", "Turn on Developer Mode under Settings → Apps → Advanced Settings. Then use Settings → Apps → Create, enter your MCP server endpoint and authentication method, scan tools, and create the draft under Workspace Settings → Apps → Drafts."],
+      ["Plan note", "Full custom MCP with write access is available to Business, Enterprise, and Edu. Plus and Pro get read-only access in Developer Mode. Prebuilt app connectors are broader but still vary by plan, workspace policy, and region."]
+    ]
   },
   {
-    id: "pubmed",
-    name: "Connecting PubMed",
-    description: "How to connect PubMed to Claude, and what to do on platforms without a dedicated connector.",
-    filename: "pubmed.md",
-    contentPath: "connectors/pubmed.md",
-    content: ""
+    id: "gemini",
+    name: "Gemini",
+    sections: [
+      ["Store", "There is no separate connector directory. Google Workspace access to Gmail, Drive, Docs, Calendar, Tasks, and Keep is built in. In a chat, reference a service with @, such as @Drive, or ask Gemini to use it; approve the connection the first time. Manage active connections at gemini.google.com/apps → Connected Apps."],
+      ["Your own", "There is no user-facing custom-connector or MCP mechanism in the consumer app."],
+      ["Plan note", "Personal accounts need Keep Activity turned on. Work and school accounts need an administrator to enable app connections organization-wide."]
+    ]
   },
+  {
+    id: "perplexity",
+    name: "Perplexity",
+    sections: [
+      ["Store", "Account settings → Connectors lets you browse and connect prebuilt services such as Drive and Dropbox."],
+      ["Your own", "On the same page, choose + Custom connector → Remote, enter a name and the MCP server HTTPS URL, optionally set authentication, transport, and icon, acknowledge the risk notice, select Add, then open the card to authenticate."],
+      ["Plan note", "Pro users can add personal custom connectors. Organization-wide sharing and enabling connectors for other members requires an Enterprise administrator under Enterprise settings → Permissions → Connectors permissions."]
+    ]
+  }
 ];
 
 const HOMEWORK = {
-  skillId: "adversarial-debate-review",
+  skill: {
+    id: "adversarial-debate-review",
+    name: "adversarial-debate-review",
+    filename: "adversarial-debate-review.skill",
+    contentPath: "skills/adversarial-debate-review.md"
+  },
   framing: "adversarial-debate-review: an outline, not yet validated. Three AI agents argue a claim — for, against, and a judge. The design is real; it hasn't earned full trust yet. Finish building and validating it yourself if you want to learn how."
 };
 
@@ -113,6 +147,6 @@ window.PROMPT_SECTIONS = PROMPT_SECTIONS;
 window.SKILLS = SKILLS;
 window.PLUGINS = PLUGINS;
 window.PLUGIN_COMPONENTS = PLUGIN_COMPONENTS;
-window.CONNECTORS = CONNECTORS;
+window.CONNECTOR_PLATFORMS = CONNECTOR_PLATFORMS;
 window.HOMEWORK = HOMEWORK;
 window.SETUP_CONTENT_PATH = SETUP_CONTENT_PATH;

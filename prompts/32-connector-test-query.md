@@ -1,6 +1,6 @@
 ---
-Exercise prompts: connect one real thing
-Source: workshop deck v0.2, Module 2 (slide 22). Use after connecting Copilot+OneDrive/SharePoint or Claude/Gemini+Drive to a folder with 2-3 of your own PDFs.
+Exercise prompts: connect one real thing (Module 3)
+Source: workshop deck v0.2, Module 3 — Skills, then connectors (slides 34-35). Use after connecting Copilot+OneDrive/SharePoint or Claude/Gemini+Drive to a folder with 2-3 of your own PDFs.
 ---
 
 # Ask a real question about your own paper
@@ -13,7 +13,7 @@ Once your folder is connected, don't just confirm it works — ask something you
 
 > Does anything in this folder mention [a specific gene, drug, or method]? Which paper, and what does it say?
 
-> Compare the stated limitations across the papers in this folder — what do they have in common?
+> Compare the stated limitations across the papers in this folder — what do they have in common? Answer in a short list, under 150 words total.
 
 ## What to notice
 

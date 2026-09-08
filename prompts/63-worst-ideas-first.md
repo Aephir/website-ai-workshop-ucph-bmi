@@ -1,6 +1,7 @@
 ---
-Prompting technique: worst-ideas-first
+Prompting technique: worst-ideas-first (Module 6, supplemental)
 New example for this workshop — not reused from the BMI retreat session.
+Moved to the "Prompting reference" recap at the end of the deck (slide 60) -- covered live only if time remains after Module 5; otherwise handed out as take-home reference. Not a scheduled exercise slot.
 ---
 
 # Worst-ideas-first

@@ -1,6 +1,7 @@
 ---
-Prompting technique: idea stress test
+Prompting technique: idea stress test (Module 6, supplemental)
 New example for this workshop.
+Moved to the "Prompting reference" recap at the end of the deck (slide 61) -- covered live only if time remains after Module 5; otherwise handed out as take-home reference. Not a scheduled exercise slot.
 ---
 
 # Idea stress test
@@ -15,7 +16,7 @@ Before committing time to a plan, ask the AI to attack it instead of improve it.
 
 ## Example prompt
 
-> I'm planning to run a recurring lab meeting where each week one person presents a paper they didn't write, cold, with no prep beyond reading it once. Give me the strongest case against this working, not a balanced pro/con list. Then tell me which objections would actually kill the format and which are just friction that goes away after a few weeks.
+> I'm planning to run a recurring lab meeting where each week one person presents a paper they didn't write, cold, with no prep beyond reading it once. Give me the strongest case against this working, not a balanced pro/con list — 3-5 objections, one line each. Then tell me which of those would actually kill the format and which are just friction that goes away after a few weeks.
 
 ## Why this works
 

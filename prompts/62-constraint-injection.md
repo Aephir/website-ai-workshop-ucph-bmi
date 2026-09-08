@@ -1,6 +1,7 @@
 ---
-Prompting technique: constraint injection
+Prompting technique: constraint injection (Module 6, supplemental)
 New example for this workshop.
+Moved to the "Prompting reference" recap at the end of the deck (slide 59) -- covered live only if time remains after Module 5; otherwise handed out as take-home reference. Not a scheduled exercise slot.
 ---
 
 # Constraint injection

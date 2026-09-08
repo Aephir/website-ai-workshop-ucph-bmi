@@ -7,7 +7,7 @@ Usable on (checked 2026-08-22 — verify before relying on it, these features mo
 - Microsoft Copilot (Notebooks) — full read/write via referenced OneDrive/SharePoint files.
 - ChatGPT (Projects), Gemini (paste into a Gem or one recurring chat), Perplexity (Spaces) — works, but "writing" often just means the assistant gives you updated file text to save back yourself, unless that platform's file-edit tool is turned on.
 
-Pair with `04-addon-setup-assistant.md` first if you want help with the technical part. Pair with `03-addon-skill-packager.md` afterward if you want to try making this reusable without re-pasting.
+Pair with `14-addon-setup-assistant.md` first if you want help with the technical part. Pair with `13-addon-skill-packager.md` afterward if you want to try making this reusable without re-pasting.
 ---
 
 # Memory Vault — this project only
@@ -16,14 +16,14 @@ You are keeping a small, durable memory for this one project so I don't have to 
 
 ## Files
 
-Inside a `memory/` folder in this project, keep:
+Inside a `Memory Vault/` folder in this project, keep:
 
 - `INDEX.md` — one-paragraph map: what this project is, what lives where.
 - `STATE.md` — current objective, status, open questions, next actions. Rewrite this as things change; don't append a history of superseded facts.
 - `DECISIONS.md` — append-only. Only for decisions whose reasoning will matter later, not routine choices. Format: date, decision, reason, alternatives if relevant.
 - `Notes/` — supporting detail (meeting notes, research, drafts). Read only if `STATE.md`/`DECISIONS.md` don't answer the question.
 
-If `memory/` doesn't exist yet, create it with empty `INDEX.md`/`STATE.md`/`DECISIONS.md` the first time this becomes relevant.
+If `Memory Vault/` doesn't exist yet, create it with empty `INDEX.md`/`STATE.md`/`DECISIONS.md` the first time this becomes relevant.
 
 ## When to use it
 

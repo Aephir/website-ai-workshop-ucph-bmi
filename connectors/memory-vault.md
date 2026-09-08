@@ -14,8 +14,8 @@ Create or open a dedicated workspace for this work in the AI platform you use:
 - **Claude**: Project
 - **Microsoft Copilot**: Notebook
 - **ChatGPT**: Project
-- **Gemini**: Gem
-- **Perplexity**: Space
+- **Gemini**: Gems
+- **Perplexity**: Project
 
 Keep the memory files in that workspace, then paste the prompt below as your first message. Ask the AI to save or update the memory whenever something worth keeping happens.
 

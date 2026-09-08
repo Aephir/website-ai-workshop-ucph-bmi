@@ -1,6 +1,6 @@
 ---
 Prompt: External Memory Vault — universal (cross-project) version
-Use: sets up ONE shared vault reachable from every project or chat you have on this platform, not scoped to whatever you're working on right now. Requires a persistent connector to a folder or drive that lives outside any single project. Use `04-addon-setup-assistant.md` first if that isn't set up yet.
+Use: sets up ONE shared vault reachable from every project or chat you have on this platform, not scoped to whatever you're working on right now. Requires a persistent connector to a folder or drive that lives outside any single project. Use `14-addon-setup-assistant.md` first if that isn't set up yet.
 
 Usable on (checked 2026-08-22 — verify before relying on it):
 - Claude — fully local, via a filesystem/MCP connector in the Desktop app (nothing leaves your machine), or a cloud-drive connector. Any plan.

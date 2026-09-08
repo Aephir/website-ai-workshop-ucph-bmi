@@ -1,6 +1,7 @@
 ---
-Prompting technique: CRAFT
+Prompting technique: CRAFT (Module 6, supplemental)
 Retaught from the BMI retreat workshop — same framework, new example (not the intermittent-fasting-in-T2D example used there).
+Moved to the "Prompting reference" recap at the end of the deck (slide 57) -- covered live only if time remains after Module 5; otherwise handed out as take-home reference. Not a scheduled exercise slot.
 ---
 
 # CRAFT

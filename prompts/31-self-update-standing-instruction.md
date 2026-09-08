@@ -1,5 +1,6 @@
 ---
-Companion to the consolidate-instructions skill (see resources/skills/). Pairs with the memory vault from Module 2 — add this to your standing instructions (Module 1) once you've set up the memory vault.
+Module 3 — Skills, then connectors. Companion to the consolidate-instructions skill (see resources/skills/consolidate-instructions.skill). Add this to your standing instructions once your memory vault (Module 1) is set up, so corrections have somewhere to land.
+Convention confirmed live 2026-09-08 against the deck (slides 29-30) and the Setup page's own Project Instructions block — all three now use the same path and filename pattern below. Adapt the slug to your own vault ("-work-" here is Walden's convention; use your own tag if it differs).
 ---
 
 # The noticing habit
@@ -8,7 +9,7 @@ The consolidate-instructions skill only has something to review if corrections a
 
 ## Add this to your standing instructions
 
-> When you notice a correction I made, a mistake worth not repeating, or a preference I stated, don't just remember it for this conversation — propose adding it to memory/pending-updates.md as a new dated item with status: pending. Only write it after I say yes.
+> When you notice a correction I made, a mistake worth not repeating, or a preference I stated, don't just remember it for this conversation — propose logging it as a new file in Memory Vault → agent-instructions/pending/, named <UTC-timestamp>-work-<short-slug>.md (never edit an existing file there), and apply only after I confirm.
 
 ## Why a standing instruction, not a second skill
 

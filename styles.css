@@ -448,6 +448,29 @@ pre {
   margin: 18px 0;
 }
 
+.connector-platform-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.connector-platform-panel > h2 {
+  margin: 8px 0 2px;
+}
+
+.connector-info {
+  padding: 20px;
+}
+
+.connector-info h3 {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.connector-info p {
+  color: var(--text-1);
+  margin: 8px 0 0;
+}
+
 .card-actions {
   display: flex;
   gap: 10px;

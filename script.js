@@ -441,41 +441,65 @@
   }
 
   function initConnectorsPage() {
-    var container = byId("connectors-grid");
-    var connectors = window.CONNECTORS;
+    var tabs = byId("connector-platform-tabs");
+    var container = byId("connector-platform-panels");
+    var platforms = window.CONNECTOR_PLATFORMS;
 
-    if (!container || !isArray(connectors)) {
+    if (!tabs || !container || !isArray(platforms)) {
       return;
     }
 
-    connectors.forEach(function (connector) {
-      var card = document.createElement("article");
-      card.className = "card reveal";
+    platforms.forEach(function (platform, index) {
+      var tab = document.createElement("button");
+      tab.className = "platform-tab";
+      tab.type = "button";
+      tab.role = "tab";
+      tab.textContent = platform.name;
+      tab.dataset.connectorPlatform = platform.id;
+      tab.setAttribute("aria-selected", String(index === 0));
+      tabs.appendChild(tab);
 
-      var body = document.createElement("div");
-      body.className = "card-body";
+      var panel = document.createElement("section");
+      panel.className = "connector-platform-panel";
+      panel.dataset.connectorPanel = platform.id;
+      panel.setAttribute("aria-label", platform.name + " connectors");
+      panel.hidden = index !== 0;
 
-      var name = document.createElement("h3");
-      name.textContent = connector.name;
+      var heading = document.createElement("h2");
+      heading.textContent = platform.name;
+      panel.appendChild(heading);
 
-      var description = document.createElement("p");
-      description.textContent = connector.description;
+      platform.sections.forEach(function (section) {
+        var block = document.createElement("article");
+        block.className = "connector-info card reveal";
+        var title = document.createElement("h3");
+        title.textContent = section[0];
+        var text = document.createElement("p");
+        text.textContent = section[1];
+        block.appendChild(title);
+        block.appendChild(text);
+        panel.appendChild(block);
+      });
 
-      var actions = document.createElement("div");
-      actions.className = "card-actions";
-
-      var view = document.createElement("a");
-      view.className = "btn-inline";
-      view.href = "view.html?type=connector&id=" + encodeURIComponent(connector.id);
-      view.textContent = "View guide";
-
-      actions.appendChild(view);
-      body.appendChild(name);
-      body.appendChild(description);
-      body.appendChild(actions);
-      card.appendChild(body);
-      container.appendChild(card);
+      container.appendChild(panel);
     });
+
+    function selectPlatform(id) {
+      tabs.querySelectorAll(".platform-tab").forEach(function (tab) {
+        tab.classList.toggle("is-active", tab.dataset.connectorPlatform === id);
+        tab.setAttribute("aria-selected", String(tab.dataset.connectorPlatform === id));
+      });
+      container.querySelectorAll("[data-connector-panel]").forEach(function (panel) {
+        panel.hidden = panel.dataset.connectorPanel !== id;
+      });
+    }
+
+    tabs.querySelectorAll(".platform-tab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        selectPlatform(tab.dataset.connectorPlatform);
+      });
+    });
+    selectPlatform(platforms[0].id);
   }
 
   function initSetupPage() {
@@ -568,9 +592,7 @@
   function initHomeworkPage() {
     var container = byId("homework-card");
     var homework = window.HOMEWORK;
-    var skill = isArray(window.SKILLS) && homework
-      ? window.SKILLS.find(function (entry) { return entry.id === homework.skillId; })
-      : null;
+    var skill = homework ? homework.skill : null;
 
     if (!container || !skill || !homework) {
       return;

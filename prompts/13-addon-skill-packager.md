@@ -1,6 +1,6 @@
 ---
 Add-on prompt: skill/agent packager
-Use: paste AFTER `01-memory-vault-single-project.md` or `02-memory-vault-universal.md` is already working and you're happy with it, if you want to stop re-pasting it every session. Not guaranteed to work — trying it and seeing what your own tool can actually do is the point of this exercise.
+Use: paste AFTER `11-memory-vault-single-project.md` or `12-memory-vault-universal.md` is already working and you're happy with it, if you want to stop re-pasting it every session. Not guaranteed to work — trying it and seeing what your own tool can actually do is the point of this exercise.
 
 Usable on (checked 2026-08-22 — this changed mid-August 2026 already, re-check before relying on it):
 - Claude — yes. Skills are self-serve on any plan, saved once, reused automatically.
