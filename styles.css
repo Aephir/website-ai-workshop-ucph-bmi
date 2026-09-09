@@ -453,6 +453,10 @@ pre {
   gap: 14px;
 }
 
+.connector-platform-panel[hidden] {
+  display: none;
+}
+
 .connector-platform-panel > h2 {
   margin: 8px 0 2px;
 }

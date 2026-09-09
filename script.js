@@ -388,14 +388,7 @@
       contents.textContent = plugin.contents;
       var actions = document.createElement("div");
       actions.className = "card-actions";
-      var repository = document.createElement("a");
-      repository.className = "btn-inline";
-      repository.href = plugin.repository;
-      repository.target = "_blank";
-      repository.rel = "noopener noreferrer";
-      repository.textContent = "Open GitHub repository";
 
-      actions.appendChild(repository);
       (plugin.downloads || []).forEach(function (downloadInfo) {
         var download = document.createElement("a");
         download.className = "btn-inline";
